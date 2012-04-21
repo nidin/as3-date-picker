@@ -1,0 +1,15 @@
+----------------------------------------------------
+INSTALL AS3 DATE PICKER SWC COMPONENT IN FLASH CS5
+----------------------------------------------------
+
+Version = 4.2
+
+copy "DatePicker.swc" to
+C:\Documents and Settings\(REPLACE USER NAME)\Local Settings\Application Data\Adobe\Flash CS5\en_US\Configuration\Components\
+
+Close Flash IDE if already open 
+Open Flash IDE and check the Standard Componenets in Componenets Panel
+
+drag and drop date picker in to stage 
+
+:) enjoy 
