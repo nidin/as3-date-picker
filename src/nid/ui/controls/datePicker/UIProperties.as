@@ -32,6 +32,7 @@
 		public var MonthAndYearFontSize	:Number = 12;
 		public var WeekNameFontSize		:Number = 12;
 		public var DayFontSize			:Number = 10;
+		public var hideOnFocusOut		:Boolean = true;
 		
 		protected var _prompt			:String;
 		protected var _prompt_bkp		:String = "Select Date";

@@ -311,13 +311,13 @@
 				Tweener.addTween(Calendar, { alpha:1, time:1, transition:"easeOutExpo" } );
 				isHidden	=	false;
 				try{
-					stage.addEventListener(MouseEvent.MOUSE_UP, showHideCalendar);
+					if (hideOnFocusOut) stage.addEventListener(MouseEvent.MOUSE_UP, showHideCalendar);
 				}catch (e:Error) {}
 			}else {
 				Tweener.addTween(Calendar, { alpha:0, time:0.5, transition:"easeOutExpo",onComplete:function ():void{ stage.removeChild(Calendar); } } );
 				isHidden	=	true;
 				try{
-					stage.removeEventListener(MouseEvent.MOUSE_UP, showHideCalendar);
+					if (hideOnFocusOut) stage.removeEventListener(MouseEvent.MOUSE_UP, showHideCalendar);
 				}catch (e:Error) {}				
 			}
 		}

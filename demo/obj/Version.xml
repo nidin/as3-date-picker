@@ -2,8 +2,8 @@
 <version path="/nid/utils/" package="nid.utils">
   <major>1</major>
   <minor>0</minor>
-  <build>44</build>
-  <revision>53</revision>
+  <build>47</build>
+  <revision>0</revision>
   <author>Nidin P Vinayakan</author>
-  <timestamp>21/04/12 9:28:49 AM</timestamp>
+  <timestamp>23/05/12 10:11:04 AM</timestamp>
 </version>
