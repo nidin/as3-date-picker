@@ -31,13 +31,22 @@ package
 			dataPicker.hideOnFocusOut = false;
 			dataPicker.WeekStart = "monday";
 			dataPicker.months	= 	["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-			
+			//dataPicker.fontSize(20, 20, 20);
 			//dataPicker.selectedDate = new Date(2013,2,3,12,2,2,2);
 			dataPicker.addEventListener(CalendarEvent.CHANGE, getdate);
 			dataPicker.x = 25;
 			dataPicker.y = 25;
 			
 			holder.addChild(dataPicker);
+			dataPicker.alwaysShowCalendar = true;
+			
+			dataPicker.setLabelColor = 0xffffff
+			dataPicker.setButtonColor = 0xffffff
+			dataPicker.setBackgroundColor = [0x3D3D3D, 0x333333];
+			dataPicker.setEnabledCellColor = 0x666666;
+			dataPicker.setDisabledCellColor = 0xCCCCCC;
+			
+			//dataPicker.
 			
 			var resetBtn:Button = new Button();
 			resetBtn.x = 25;

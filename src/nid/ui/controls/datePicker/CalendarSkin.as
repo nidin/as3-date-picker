@@ -16,12 +16,12 @@
 	import flash.text.AntiAliasType;
 	import flash.geom.Matrix;
 	import flash.filters.ColorMatrixFilter;
+	import nid.events.CalendarEvent;
 	/**
 	 * ...
 	 * @author Nidin Vinayak
 	 */
 	public dynamic class CalendarSkin extends UIProperties {
-
 		
 		/*
 		 *	GET SET METHODS
@@ -29,25 +29,26 @@
 		 */
 		public function set WeekStart(s:String):void 
 		{ 
-			_startDay = s; 
+			_startDay = s.toLowerCase();
 			if (_startDay == "monday") _startID = 0;
 			else if (_startDay == "sunday")_startID = 1;
 			weekname.text =	weekdisplay[_startID];
 			ConstructCalendar();
 		}
-		public function set icon(b:Bitmap):void { _icon = b; }		
-		public function set setBackgroundColor(color:Array):void { backgroundColor = color; }
-		public function set setBackgroundStrokeColor(color:int):void { backgroundStrokeColor = color; }
-		public function set setLabelColor(color:int):void { labelColor = color; }
-		public function set setButtonColor(color:int):void { buttonColor = color; }
-		public function set setDesabledCellColor(color:int):void { DesabledCellColor = color; }
-		public function set setEnabledCellColor(color:int):void { EnabledCellColor = color; }
-		public function set setTodayCellColor(color:int):void { TodayCellColor = color; }
-		public function set setMouseOverColor(color:int):void { mouseOverCellColor = color; }
-		public function set setDateColor(color:int):void { entryTextColor = color; }
+		public function set icon(b:Object):void { calendarIcon.configIcon(b); }
+		public function set setBackgroundColor(color:Array):void { backgroundColor = color; re_construct();}
+		public function set setBackgroundGradientType(value:String):void { backgroundGradientType = value; re_construct(); }
+		public function set setBackgroundStrokeColor(color:int):void { backgroundStrokeColor = color; re_construct();}
+		public function set setLabelColor(color:int):void { labelColor = color; re_construct();}
+		public function set setButtonColor(color:int):void { buttonColor = color; re_construct();}
+		public function set setDisabledCellColor(color:int):void { disabledCellColor = color; ConstructCalendar();}
+		public function set setEnabledCellColor(color:int):void { enabledCellColor = color; ConstructCalendar();}
+		public function set setTodayCellColor(color:int):void { TodayCellColor = color; changeColor(todayDateBox, color); }
+		public function set setMouseOverColor(color:int):void { mouseOverCellColor = color;}
+		public function set setDateColor(color:int):void { entryTextColor = color; ConstructCalendar();}
 		
-		public function set setCalendarWidth(w:Number):void { calendarWidth = w; }
-		public function set setCalendarHeight(h:Number):void { calendarHeight = h; }			
+		public function set setCalendarWidth(w:Number):void { calendarWidth = w; re_construct();}
+		public function set setCalendarHeight(h:Number):void { calendarHeight = h; re_construct();}			
 		
 		/*
 		 * SET FONT SIZE
@@ -57,6 +58,10 @@
 			MonthAndYearFontSize = MonthAndYear;
 			WeekNameFontSize = WeekName;
 			DayFontSize = Day;
+			if (stage)
+			{
+				ConstructCalendar();
+			}
 		}
 		/*
 		 * SET GLOW FILTER OF CALENDAR
@@ -73,19 +78,26 @@
 		public function CalendarSkin() {
 			
 		}
-		protected function Construct():void {
+		protected function re_construct():void { 
+			if (stage)
+			{
+				Construct();
+				dispatchEvent(new CalendarEvent(CalendarEvent.UPDATE));
+			}
+		}
+		protected function Construct():void 
+		{
+			flush();
 			Calendar = new MovieClip();
 			isHitted = new Object();
 			Calendar.alpha 	= 0;
 			Calendar.cacheAsBitmap = true;
 			setGlow();
-		/*
-		 *
-		 *  DRAW CALENDAR BACKGROUND
-		 *
-		 */
+			/*
+			 *  DRAW CALENDAR BACKGROUND
+			 */
 			var bg						:Sprite 	= 	new Sprite();
-			var type					:String 	= 	GradientType.RADIAL;
+			var type					:String 	= 	backgroundGradientType;
 			var colorArray				:Array 		= 	backgroundColor;	
 			var alphaArray				:Array 		=	[1,1];					
 			var ratioArray				:Array		=	[0, 255];				
@@ -119,11 +131,10 @@
 			
 			Calendar.addChild(bg);
 			
-		/*
-		 *	MAKE CURRENT DATE DISPLAY
-		 *	
-		 *
-		 */
+			/*
+			 *	MAKE CURRENT DATE DISPLAY
+			 *
+			 */
 				currentDateLabel		 		= 	new TextField();
 				currentDateLabel.embedFonts 	=	embedFonts;
 				currentDateLabel.name 			= 	"currentDateLabel";
@@ -142,9 +153,9 @@
 			currentDateLabel.text				=	"";
 			
 		 
-		/**
-		 * MAKE WEEK DISPLAY
-		 */
+			/**
+			 * MAKE WEEK DISPLAY
+			 */
 				format.letterSpacing 			=	letterSpacing;
 				format.size						=	WeekNameFontSize;
 				weekdisplay						=	["MTWTFSS","SMTWTFS"]
@@ -203,6 +214,11 @@
 			
 			ConstructCalendar();
 			
+		}
+		
+		public function flush():void 
+		{
+			Calendar = null;
 		}
 		public function clickHandler(e:MouseEvent):void{
 			switch (e.target.name) {
@@ -284,8 +300,8 @@
 			if (endDay > 0) {
 				var inc_1:Number = 0;
 				while (inc_1 < endDay) {
-					dateBox 		= 	Construct_Date_Element(DesabledCellColor,inc_1,false);
-					dateBox.id 		= 	DesabledCellColor;
+					dateBox 		= 	Construct_Date_Element(disabledCellColor,inc_1,false);
+					dateBox.id 		= 	disabledCellColor;
 					dateBox.isToday	=	false;
 					dateBox.name	=	"D"+inc_1;
 					dateBox.x		=	xpos+2;
@@ -321,16 +337,17 @@
 						dateBox.hitted	=	false;
 						dateBox.serial	=	restNum;
 						dateBox.date	=	new Date(currentyear,currentmonth,entryNum);
-						dateBox.isToday	=	true;						
+						dateBox.isToday	=	true;
+						todayDateBox  	= dateBox;
 					}else{
 						/*if(dateBox.hitted){
 							dateBox 		= 	Construct_Date_Element(mouseOverCellColor,entryNum,true);
 							dateBox.hitted	=	true;
 						}else{*/
-							dateBox 		= 	Construct_Date_Element(EnabledCellColor,entryNum,true);
+							dateBox 		= 	Construct_Date_Element(enabledCellColor,entryNum,true);
 							dateBox.hitted	=	false;
 						//}						
-						dateBox.id 		= 	EnabledCellColor;
+						dateBox.id 		= 	enabledCellColor;
 						
 						dateBox.serial	=	restNum;
 						dateBox.date	=	new Date(currentyear,currentmonth,entryNum);
@@ -340,8 +357,8 @@
 			/*
 			 *	CONSTRUCT SECOND SET OF DESABLED DATE CELLS 
 			 */			
-					dateBox 		= 	Construct_Date_Element(DesabledCellColor,entryNum,false);
-					dateBox.id 		= 	DesabledCellColor;
+					dateBox 		= 	Construct_Date_Element(disabledCellColor,entryNum,false);
+					dateBox.id 		= 	disabledCellColor;
 					dateBox.isToday	=	false;
 				}
 				dateBox.name	=	"D"+(restNum + inc_1);
@@ -365,7 +382,7 @@
 		}
 		public function removeEntry():void{
 			for(var i:int=0;i<42;i++){
-				Calendar.removeChild(cellArray[i]);
+				if (Calendar.contains(cellArray[i])) Calendar.removeChild(cellArray[i]);
 			}
 			cellArray = [];
 		}

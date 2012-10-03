@@ -18,65 +18,60 @@
 		[Event(name="loaded",type="nid.events.CalendarEvent")]
 		[Event(name="change",type="nid.events.CalendarEvent")]
 		
-		protected var iconURL:String;
-		protected var iconLoader:Loader;
-		protected var iconWidth:Number = 18;
-		protected var iconHeight:Number = 18;
-		protected var _smooth:Boolean = true;
-		protected var iconBitmap:Bitmap;
-		protected var isEmbeded:Boolean;
+		private var iconLoader:Loader;
 		
-		public function set icon(u:String):void { iconURL = u; }
-		public function set smooth(s:Boolean):void { _smooth = s; }
+		private var iconURL:String;
+		private var _smooth:Boolean = true;
+		private var iconBitmap:Bitmap;
+		private var isEmbeded:Boolean;
+		
+		public function set smooth(s:Boolean):void { _smooth = s; if (iconBitmap) iconBitmap.smoothing = s; }
 		public function get embededIcon():Boolean { return isEmbeded;}
-		public function set setBitmap(m:Bitmap):void { configIcon(m); }
-		public function set Width(w:Number):void { this.width = w; }
-		public function set Height(h:Number):void { this.height = h; }
 		
 		public function iconSprite():void {
+			this.buttonMode = true;
 		}
-		public function configIcon(bitmap:Bitmap):void {
-			iconBitmap = bitmap;
-			if (iconURL == null) {				
-				if (iconBitmap == null) {
-					trace("ERROR!! Please provide a Bitmap for calendar icon");
-					return;
-				}
+		public function configIcon(bitmap:Object):void {
+			if (bitmap == null)
+			{
+				trace("ERROR!! Please provide a Bitmap for calendar icon");
+				return;
+			}
+			
+			if (iconBitmap != null && this.contains(iconBitmap))
+			{
+				removeChild(iconBitmap);
+				iconBitmap = null;
+			}
+			
+			if (bitmap is Bitmap) 
+			{
+				iconURL = null;
+				iconBitmap = bitmap as Bitmap;
 				isEmbeded = true;
 				iconBitmap.smoothing = _smooth;
-				iconBitmap.addEventListener(Event.ADDED, drawHitArea);
 				addChild(iconBitmap);
-				this.buttonMode = true;
+				drawHitArea();
 				return;
-			}else {
-				if (iconURL == null) {
-					trace("ERROR!! Please provide a Bitmap URL for calendar icon");
-					return;
-				}
+			}else if (bitmap is String) 
+			{
+				iconURL = bitmap as String;
 				isEmbeded = false;
-				iconLoader = new Loader();
+				if (iconLoader == null) iconLoader = new Loader();
 				iconLoader.contentLoaderInfo.addEventListener(Event.COMPLETE, drawHitArea);
 				iconLoader.load(new URLRequest(iconURL));
-				addChild(iconLoader);
-				this.buttonMode = true;
 				return;
 			}
 		}
-		protected function drawHitArea(e:Event):void {
-			var w:Number;
-			var h:Number;
+		protected function drawHitArea(e:Event=null):void {
 			if (iconURL != null) {
-				var b:Bitmap = Bitmap(e.currentTarget.content);
-				b.smoothing = _smooth;
-				w = e.target.content.width;
-				h = e.target.content.height;				
-			}else {
-				w = e.currentTarget.width;
-				h = e.currentTarget.height;
+				iconBitmap = Bitmap(e.currentTarget.content);
+				iconBitmap.smoothing = _smooth;
+				addChild(iconBitmap);
 			}
 			this.graphics.clear();
 			this.graphics.beginFill(0x000000, 0);
-			this.graphics.drawRect(0, 0, w, h);
+			this.graphics.drawRect(0, 0, iconBitmap.width, iconBitmap.height);
 			this.graphics.endFill();
 			dispatchEvent(new CalendarEvent(CalendarEvent.LOADED));
 			return;

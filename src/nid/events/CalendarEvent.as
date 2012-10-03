@@ -10,6 +10,7 @@
 	{
 		public static const CHANGE:String = "change";
 		public static const LOADED:String = "loaded";
+		static public const UPDATE:String = "update";
 		
 		private var date:Date;
 		

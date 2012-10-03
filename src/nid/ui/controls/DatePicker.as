@@ -88,22 +88,23 @@
 			addChild(dateField);
 			calendarIcon = new iconSprite();
 			calendarIcon.addEventListener(CalendarEvent.LOADED, update);
-			calendarIcon.configIcon(_icon);
+			calendarIcon.configIcon(new default_icon());
 			addChild(calendarIcon);
-			
+			addEventListener(CalendarEvent.UPDATE, update);
 			this.addEventListener(Event.ADDED_TO_STAGE, updateUI);
 		}
 		
 		private function updateUI(e:Event):void 
 		{
 			this.removeEventListener(Event.ADDED_TO_STAGE, updateUI);
-			//ConstructCalendar();
+			addCustomMenuItems();
+			Construct();
+			update(null);
 		}
 		
 		protected function update(e:CalendarEvent):void {
 			redraw();
 			isHidden = true;
-			addCustomMenuItems();
 			
 			if (Capabilities.touchscreenType == TouchscreenType.NONE)
 			{
@@ -298,6 +299,7 @@
 		 *  Click Handler
 		 */
 		public function showHideCalendar(e:Event):void {
+			if (_alwaysShowCalendar) return;
 			if (e.currentTarget == stage) {
 				//trace(e.target.name);
 				if(e.target.name == "hit" || e.target.name == "NextButton" || e.target.name == "PrevButton" || e.target == calendarIcon ){					
@@ -319,6 +321,16 @@
 				try{
 					if (hideOnFocusOut) stage.removeEventListener(MouseEvent.MOUSE_UP, showHideCalendar);
 				}catch (e:Error) {}				
+			}
+		}
+		public function set alwaysShowCalendar(value:Boolean):void
+		{
+			_alwaysShowCalendar  = value;
+			if (isHidden)
+			{
+				isHidden	=	false;
+				stage.addChild(Calendar);
+				Tweener.addTween(Calendar, { alpha:1, time:1, transition:"easeOutExpo" } );
 			}
 		}
 		public function onOver(e:Event):void {
