@@ -105,6 +105,7 @@
 		protected function update(e:CalendarEvent):void {
 			redraw();
 			isHidden = true;
+			alwaysShowCalendar = _alwaysShowCalendar;
 			
 			if (Capabilities.touchscreenType == TouchscreenType.NONE)
 			{
@@ -326,11 +327,18 @@
 		public function set alwaysShowCalendar(value:Boolean):void
 		{
 			_alwaysShowCalendar  = value;
-			if (isHidden)
+			if (value && isHidden)
 			{
 				isHidden	=	false;
-				stage.addChild(Calendar);
+				if (stage != null) stage.addChild(Calendar);
 				Tweener.addTween(Calendar, { alpha:1, time:1, transition:"easeOutExpo" } );
+			}
+			else if(!value && !isHidden)
+			{
+				isHidden	=	true;
+				if(stage != null && stage.contains(Calendar))
+					stage.removeChild(Calendar);
+				Calendar.alpha = 0;
 			}
 		}
 		public function onOver(e:Event):void {

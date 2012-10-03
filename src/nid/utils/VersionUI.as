@@ -23,7 +23,7 @@ package nid.utils
              ver = new TextField();
              ver.autoSize = TextFieldAutoSize.LEFT;
              ver.defaultTextFormat = new TextFormat('Tahoma', 10, 0xffffff);
-             ver.text = 'build:' + as3version.Build;
+             ver.text = 'build:' + Version.Build;
              addChild(ver);
          }
      }

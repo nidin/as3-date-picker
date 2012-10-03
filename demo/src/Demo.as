@@ -3,6 +3,7 @@ package
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.utils.setTimeout;
 	import nid.events.CalendarEvent;
 	import nid.ui.controls.DatePicker;
 	
@@ -37,8 +38,8 @@ package
 			dataPicker.x = 25;
 			dataPicker.y = 25;
 			
-			holder.addChild(dataPicker);
 			dataPicker.alwaysShowCalendar = true;
+			holder.addChild(dataPicker);
 			
 			dataPicker.setLabelColor = 0xffffff
 			dataPicker.setButtonColor = 0xffffff

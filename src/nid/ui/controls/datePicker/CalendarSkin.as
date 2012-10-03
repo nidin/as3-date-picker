@@ -218,6 +218,10 @@
 		
 		public function flush():void 
 		{
+			if (this.stage != null && this.stage.contains(Calendar))
+			{
+				stage.removeChild(Calendar);
+			}
 			Calendar = null;
 		}
 		public function clickHandler(e:MouseEvent):void{

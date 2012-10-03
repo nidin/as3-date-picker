@@ -4,12 +4,12 @@
   <output>
     <movie outputType="Application" />
     <movie input="" />
-    <movie path="bin\Demo.swf" />
+    <movie path="bin\AS3DateChooserv4.swf" />
     <movie fps="30" />
-    <movie width="800" />
-    <movie height="600" />
+    <movie width="350" />
+    <movie height="250" />
     <movie version="10" />
-    <movie minorVersion="0" />
+    <movie minorVersion="1" />
     <movie platform="Flash Player" />
     <movie background="#FFFFFF" />
   </output>
@@ -50,9 +50,8 @@
   </includeLibraries>
   <!-- SWC Libraries -->
   <libraryPaths>
-    <element path="lib\DatePicker-v4.4.2.swc" />
-    <element path="lib\DatePicker-v4.4.9.swc" />
-    <element path="lib\DatePicker-v4.4.10.rv1.swc" />
+    <element path="lib\tweener.swc" />
+    <element path="demo\lib\DatePicker-v4.4.10.rv1.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>
@@ -72,7 +71,7 @@
   </library>
   <!-- Class files to compile (other referenced classes will automatically be included) -->
   <compileTargets>
-    <compile path="src\Demo.as" />
+    <compile path="src\nid\ui\controls\DatePicker.as" />
   </compileTargets>
   <!-- Paths to exclude from the Project Explorer tree -->
   <hiddenPaths>
