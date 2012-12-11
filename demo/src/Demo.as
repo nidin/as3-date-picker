@@ -29,7 +29,7 @@ package
 			addChild(holder);
 			
 			dataPicker = new DatePicker();
-			dataPicker.hideOnFocusOut = false;
+			dataPicker.hideOnFocusOut = true;
 			dataPicker.WeekStart = "monday";
 			dataPicker.months	= 	["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 			//dataPicker.fontSize(20, 20, 20);
@@ -38,7 +38,7 @@ package
 			dataPicker.x = 25;
 			dataPicker.y = 25;
 			
-			dataPicker.alwaysShowCalendar = true;
+			dataPicker.alwaysShowCalendar = false;
 			holder.addChild(dataPicker);
 			
 			dataPicker.setLabelColor = 0xffffff
