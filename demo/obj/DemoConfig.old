@@ -16,7 +16,7 @@
     </define>
     <define append="true">
       <name>CONFIG::timeStamp</name>
-      <value>'17-11-2012'</value>
+      <value>'01-02-2013'</value>
     </define>
     <define append="true">
       <name>CONFIG::air</name>
@@ -32,15 +32,15 @@
     </define>
     <verbose-stacktraces>true</verbose-stacktraces>
     <source-path append="true">
-      <path-element>D:\Git-repo\as3-date-picker\demo\src</path-element>
+      <path-element>F:\Git-Repo\as3-date-picker\demo\src</path-element>
       <path-element>C:\Program Files (x86)\FlashDevelop\Library\AS3\classes</path-element>
     </source-path>
     <library-path append="true">
-      <path-element>D:\Git-repo\as3-date-picker\demo\lib\DatePicker-v4.4.10.rv1.swc</path-element>
+      <path-element>F:\Git-Repo\as3-date-picker\demo\lib\DatePicker-v4.4.10.rv1.swc</path-element>
     </library-path>
   </compiler>
   <file-specs>
-    <path-element>D:\Git-repo\as3-date-picker\demo\src\Demo.as</path-element>
+    <path-element>F:\Git-Repo\as3-date-picker\demo\src\Demo.as</path-element>
   </file-specs>
   <default-background-color>#FFFFFF</default-background-color>
   <default-frame-rate>30</default-frame-rate>

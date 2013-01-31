@@ -13,7 +13,10 @@ package
 	 */
 	public class Demo extends Sprite 
 	{
-		private var dataPicker:DatePicker;
+		[Embed(source = "calendar_day.png")]
+		private var icon_img:Class;
+		
+		private var datePicker:DatePicker;
 		
 		public function Demo():void 
 		{
@@ -28,26 +31,27 @@ package
 			var holder:Sprite = new Sprite();
 			addChild(holder);
 			
-			dataPicker = new DatePicker();
-			dataPicker.hideOnFocusOut = true;
-			dataPicker.WeekStart = "monday";
-			dataPicker.months	= 	["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-			//dataPicker.fontSize(20, 20, 20);
-			//dataPicker.selectedDate = new Date(2013,2,3,12,2,2,2);
-			dataPicker.addEventListener(CalendarEvent.CHANGE, getdate);
-			dataPicker.x = 25;
-			dataPicker.y = 25;
+			datePicker = new DatePicker();
+			datePicker.icon = new icon_img();
+			datePicker.hideOnFocusOut = true;
+			datePicker.WeekStart = "monday";
+			datePicker.months	= 	["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+			//datePicker.fontSize(20, 20, 20);
+			//datePicker.selectedDate = new Date(2013,2,3,12,2,2,2);
+			datePicker.addEventListener(CalendarEvent.CHANGE, getdate);
+			datePicker.x = 25;
+			datePicker.y = 25;
 			
-			dataPicker.alwaysShowCalendar = false;
-			holder.addChild(dataPicker);
+			datePicker.alwaysShowCalendar = false;
+			holder.addChild(datePicker);
 			
-			dataPicker.setLabelColor = 0xffffff
-			dataPicker.setButtonColor = 0xffffff
-			dataPicker.setBackgroundColor = [0x3D3D3D, 0x333333];
-			dataPicker.setEnabledCellColor = 0x666666;
-			dataPicker.setDisabledCellColor = 0xCCCCCC;
+			datePicker.setLabelColor = 0xffffff
+			datePicker.setButtonColor = 0xffffff
+			datePicker.setBackgroundColor = [0x3D3D3D, 0x333333];
+			datePicker.setEnabledCellColor = 0x666666;
+			datePicker.setDisabledCellColor = 0xCCCCCC;
 			
-			//dataPicker.
+			//datePicker.
 			
 			var resetBtn:Button = new Button();
 			resetBtn.x = 25;
@@ -63,12 +67,12 @@ package
 		private function reset(e:MouseEvent):void
 		{
 			/** reset date picker **/
-			dataPicker.selectedDate = null;
-			trace(dataPicker.selectedDate);
+			datePicker.selectedDate = null;
+			trace(datePicker.selectedDate);
 		}
 		private function getdate(e:CalendarEvent):void {
 			trace("Date:" + e.selectedDate);
-			trace(dataPicker.getDateString());
+			trace(datePicker.getDateString());
 		}
 	}
 	
