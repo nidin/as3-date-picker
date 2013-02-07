@@ -68,11 +68,13 @@ package
 		{
 			/** reset date picker **/
 			datePicker.selectedDate = null;
-			trace(datePicker.selectedDate);
+			
 		}
 		private function getdate(e:CalendarEvent):void {
 			trace("Date:" + e.selectedDate);
 			trace(datePicker.getDateString());
+			var d:Date = datePicker.selectedDate;
+			trace(d.month +"/"+ d.day +"/"+ d.fullYear);
 		}
 	}
 	
