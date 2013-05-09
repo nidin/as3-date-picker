@@ -1,5 +1,6 @@
 AS3 Date Picker
 ===============
+###License : Mozilla Public License 1.1   (http://www.mozilla.org/MPL/1.1/)
 
 AS3 Date Picker component for Flash 
 
