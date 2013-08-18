@@ -20,9 +20,11 @@
   <!-- Build options -->
   <build>
     <option accessible="False" />
+    <option advancedTelemetry="False" />
     <option allowSourcePathOverlap="False" />
     <option benchmark="False" />
     <option es="False" />
+    <option inline="False" />
     <option locale="" />
     <option loadConfig="" />
     <option optimize="True" />
@@ -53,6 +55,7 @@
     <element path="lib\DatePicker-v4.4.2.swc" />
     <element path="lib\DatePicker-v4.4.9.swc" />
     <element path="lib\DatePicker-v4.4.10.rv1.swc" />
+    <element path="lib\DatePicker-v4.4.10.rv2.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>

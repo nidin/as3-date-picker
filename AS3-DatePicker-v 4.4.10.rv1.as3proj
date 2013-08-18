@@ -20,9 +20,11 @@
   <!-- Build options -->
   <build>
     <option accessible="False" />
+    <option advancedTelemetry="False" />
     <option allowSourcePathOverlap="False" />
     <option benchmark="False" />
     <option es="False" />
+    <option inline="False" />
     <option locale="" />
     <option loadConfig="" />
     <option optimize="True" />
@@ -51,7 +53,6 @@
   <!-- SWC Libraries -->
   <libraryPaths>
     <element path="lib\tweener.swc" />
-    <element path="demo\lib\DatePicker-v4.4.10.rv1.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>

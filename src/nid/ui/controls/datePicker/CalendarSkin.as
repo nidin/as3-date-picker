@@ -158,7 +158,6 @@
 			 */
 				format.letterSpacing 			=	letterSpacing;
 				format.size						=	WeekNameFontSize;
-				weekdisplay						=	["MTWTFSS","SMTWTFS"]
 				weekname	 					= 	new TextField();
 				weekname.embedFonts  			=	embedFonts;
 				weekname.blendMode     			=	BlendMode.LAYER;

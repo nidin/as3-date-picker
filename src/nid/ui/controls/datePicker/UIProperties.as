@@ -39,9 +39,9 @@
 		protected var _prompt			:String;
 		protected var _prompt_bkp		:String = "Select Date";
 		protected var _dateFormat		:String = "D/M/Y";
-		protected var weekdisplay		:Array;
 		protected var weekname			:TextField;
 		protected var Days				:Array;
+		protected var weekdisplay		:Array	=	["MTWTFSS","SMTWTFS"]
 		protected var Months			:Array	= 	["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 		protected var _iconPosition		:String = "right";
 		protected var _calendarPosition	:String = "right";
