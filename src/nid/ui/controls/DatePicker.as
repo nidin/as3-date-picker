@@ -150,7 +150,7 @@
 		/**
 		 * Date format
 		 */
-		[Inspectable(enumeration = "D/M/Y,M/D/Y,Y/M/D,Y/D/M", defaultValue = "D/M/Y", name = "dateFormat")]
+		[Inspectable(enumeration = "D/M/YY,M/D/YY,YY/M/D,YY/D/M,DD/MM/YYYY,MM/DD/YYYY,YYYY/MM/DD,YYYY/DD/MM", defaultValue = "DD/MM/YYYY", name = "dateFormat")]
 		public function set dateFormat(value:String):void
 		{
 			_dateFormat = value;
@@ -399,7 +399,18 @@
 				{
 					case "D":format[i] = _selectedDate.getDate(); break;
 					case "M":format[i] = (_selectedDate.getMonth() + 1); break;
-					case "Y":format[i] = _selectedDate.getFullYear(); break;
+					case "YY":format[i] = _selectedDate.getFullYear().toString().substr(2,2); break;
+					case "DD": {
+						format[i] = _selectedDate.getDate().toString();
+						format[i] = format[i].length == 1?"0" + format[i]:format[i];
+						break;
+					}
+					case "MM":{
+						format[i] = Number(_selectedDate.getMonth() + 1).toString(); 
+						format[i] = format[i].length == 1?"0" + format[i]:format[i];
+						break;
+					}
+					case "YYYY":format[i] = _selectedDate.getFullYear(); break;
 				}
 			}
 			for (i = 0 ; i < format.length; i++ )

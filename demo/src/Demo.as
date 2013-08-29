@@ -34,6 +34,7 @@ package
 			datePicker = new DatePicker();
 			datePicker.icon = new icon_img();
 			datePicker.hideOnFocusOut = true;
+			datePicker.dateFormat = "DD/MM/YYYY"
 			datePicker.WeekStart = "monday";
 			datePicker.days = ["MTWTFSS", "SMTWTFS"];
 			datePicker.months	= 	["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
