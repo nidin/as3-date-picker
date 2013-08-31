@@ -217,7 +217,7 @@
 		
 		public function flush():void 
 		{
-			if (this.stage != null && this.stage.contains(Calendar))
+			if (this.stage != null && Calendar != null && this.stage.contains(Calendar))
 			{
 				stage.removeChild(Calendar);
 			}

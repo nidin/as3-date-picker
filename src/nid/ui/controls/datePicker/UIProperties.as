@@ -38,7 +38,7 @@
 		
 		protected var _prompt			:String;
 		protected var _prompt_bkp		:String = "Select Date";
-		protected var _dateFormat		:String = "D/M/Y";
+		protected var _dateFormat		:String = "DD/MM/YYYY";
 		protected var weekname			:TextField;
 		protected var Days				:Array;
 		protected var weekdisplay		:Array	=	["MTWTFSS","SMTWTFS"]
