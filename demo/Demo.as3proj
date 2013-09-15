@@ -58,6 +58,7 @@
     <element path="lib\DatePicker-v4.4.10.rv2.swc" />
     <element path="lib\DatePicker-v4.5.swc" />
     <element path="lib\DatePicker-v4.5.rv1.swc" />
+    <element path="lib\DatePicker-v4.6.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>
@@ -81,7 +82,7 @@
   </compileTargets>
   <!-- Paths to exclude from the Project Explorer tree -->
   <hiddenPaths>
-    <!-- example: <hidden path="..." /> -->
+    <hidden path="obj" />
   </hiddenPaths>
   <!-- Executed before build -->
   <preBuildCommand />
@@ -91,6 +92,7 @@
   <options>
     <option showHiddenPaths="False" />
     <option testMovie="Default" />
+    <option testMovieCommand="" />
   </options>
   <!-- Plugin storage -->
   <storage />

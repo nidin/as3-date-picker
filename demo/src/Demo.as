@@ -3,6 +3,7 @@ package
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.geom.Point;
 	import flash.utils.setTimeout;
 	import nid.events.CalendarEvent;
 	import nid.ui.controls.DatePicker;
@@ -44,9 +45,12 @@ package
 			datePicker.x = 25;
 			datePicker.y = 25;
 			
+			datePicker.calendarPlacement = "manual";
+			datePicker.calendarPoint = new Point(-100, -100);
 			datePicker.alwaysShowCalendar = false;
 			holder.addChild(datePicker);
 			
+			datePicker.tabChildren = false;
 			datePicker.setLabelColor = 0xffffff
 			datePicker.setButtonColor = 0xffffff
 			datePicker.setBackgroundColor = [0x3D3D3D, 0x333333];

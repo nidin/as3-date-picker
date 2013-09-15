@@ -176,7 +176,8 @@
 		/**
 		 * Calendar Placement
 		 */
-		[Inspectable(enumeration="left,right,top,bottom", defaultValue="right", name="calendarPlacement")]
+		[Inspectable(enumeration = "left,right,top,bottom,top-left,top-right,bottom-left,bottom-right,manual",
+		defaultValue="right", name="calendarPlacement")]
 		public function set calendarPlacement(value:String):void
 		{
 			_calendarPosition = value;
@@ -185,6 +186,9 @@
 		public function get calendarPlacement():String
 		{
 			return _calendarPosition;
+		}
+		public function set calendarPoint(point:Point):void {
+			_calendarPoint = point;
 		}
 		/**
 		 * 
@@ -204,29 +208,57 @@
 				{
 					case "right":
 					{
-						CalendarPoint.x = calendarIcon.x + calendarIcon.width + 5;
-						CalendarPoint.y = 0;
+						_calendarPoint.x = calendarIcon.x + calendarIcon.width + 5;
+						_calendarPoint.y = 0;
 					}
 					break;
 					
 					case "left":
 					{
-						CalendarPoint.x = - (Calendar.width - 5);
-						CalendarPoint.y = 0;
+						_calendarPoint.x = - (Calendar.width - 5);
+						_calendarPoint.y = 0;
 					}
 					break;
 					
 					case "top":
 					{
-						CalendarPoint.x = 0;
-						CalendarPoint.y = -(Calendar.height + 5);
+						_calendarPoint.x = 0;
+						_calendarPoint.y = -(Calendar.height + 5);
 					}
 					break;
 					
 					case "bottom":
 					{
-						CalendarPoint.x = 0;
-						CalendarPoint.y = dateField.height + 5;
+						_calendarPoint.x = 0;
+						_calendarPoint.y = dateField.height + 5;
+					}
+					break;
+					
+					case "top-left":
+					{
+						_calendarPoint.x = - (Calendar.width - 5);
+						_calendarPoint.y = -(Calendar.height + 5);
+					}
+					break;
+					
+					case "top-right":
+					{
+						_calendarPoint.x = calendarIcon.x + calendarIcon.width + 5;
+						_calendarPoint.y = -(Calendar.height + 5);
+					}
+					break;
+					
+					case "bottom-left":
+					{
+						_calendarPoint.x = - (Calendar.width - 5);
+						_calendarPoint.y = dateField.height + 5;
+					}
+					break;
+					
+					case "bottom-right":
+					{
+						_calendarPoint.x = calendarIcon.x + calendarIcon.width + 5;
+						_calendarPoint.y = dateField.height + 5;
 					}
 					break;
 				}
@@ -240,34 +272,62 @@
 				{
 					case "right":
 					{
-						CalendarPoint.x = dateField.x + dateField.width + 5;
-						CalendarPoint.y = 0;
+						_calendarPoint.x = dateField.x + dateField.width + 5;
+						_calendarPoint.y = 0;
 					}
 					break;
 					
 					case "left":
 					{
-						CalendarPoint.x = - (Calendar.width - 5);
-						CalendarPoint.y = 0;
+						_calendarPoint.x = - (Calendar.width - 5);
+						_calendarPoint.y = 0;
 					}
 					break;
 					
 					case "top":
 					{
-						CalendarPoint.x = 0;
-						CalendarPoint.y = -(Calendar.height + 5);
+						_calendarPoint.x = 0;
+						_calendarPoint.y = -(Calendar.height + 5);
 					}
 					break;
 					
 					case "bottom":
 					{
-						CalendarPoint.x = 0;
-						CalendarPoint.y = dateField.height + 5;
+						_calendarPoint.x = 0;
+						_calendarPoint.y = dateField.height + 5;
+					}
+					break;
+					
+					case "top-left":
+					{
+						_calendarPoint.x = - (Calendar.width - 5);
+						_calendarPoint.y = -(Calendar.height + 5);
+					}
+					break;
+					
+					case "top-right":
+					{
+						_calendarPoint.x = dateField.x + dateField.width + 5;
+						_calendarPoint.y = dateField.height + 5;
+					}
+					break;
+					
+					case "bottom-left":
+					{
+						_calendarPoint.x = - (Calendar.width - 5);
+						_calendarPoint.y = dateField.height + 5;
+					}
+					break;
+					
+					case "bottom-right":
+					{
+						_calendarPoint.x = dateField.x + dateField.width + 5;
+						_calendarPoint.y = dateField.height + 5;
 					}
 					break;
 				}
 			}	
-			var pt:Point  = this.localToGlobal(CalendarPoint);
+			var pt:Point  = this.localToGlobal(_calendarPoint);
 			Calendar.x = pt.x;
 			Calendar.y = pt.y;
 		}

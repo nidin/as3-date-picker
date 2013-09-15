@@ -46,7 +46,7 @@
 		protected var _iconPosition		:String = "right";
 		protected var _calendarPosition	:String = "right";
 		protected var Calendar			:MovieClip;
-		protected var CalendarPoint		:Point = new Point();
+		protected var _calendarPoint	:Point = new Point();
 		protected var inited			:Boolean	=	false;
 		protected var isHitted			:Object;
 		protected var cellArray			:Array;
