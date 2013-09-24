@@ -4,7 +4,7 @@ AS3 Date Picker
 
 AS3 Date Picker component for Flash 
 
-###INSTALL AS3 DATE PICKER SWC COMPONENT IN FLASH CS5.5
+###INSTALL AS3 DATE PICKER SWC COMPONENT IN FLASH IDE
 ----------------------------------------------------
 
 * copy "DatePicker.swc" to (Flash installed directory)\Common\Configuration\Components
