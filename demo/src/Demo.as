@@ -33,22 +33,23 @@ package
 			addChild(holder);
 			
 			datePicker = new DatePicker();
-			//datePicker.setCalendarWidth = 500;
-			//datePicker.setCalendarHeight = 500;
+			datePicker.calendarWidth = 280;
+			datePicker.calendarHeight = 300;
 			datePicker.icon = new icon_img();
 			datePicker.hideOnFocusOut = true;
 			datePicker.dateFormat = "DD/MM/YYYY"
 			datePicker.WeekStart = "monday";
 			datePicker.days = ["MTWTFSS", "SMTWTFS"];
 			datePicker.months	= 	["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-			//datePicker.fontSize(20, 20, 20);
-			//datePicker.selectedDate = new Date(2013,2,3,12,2,2,2);
+			datePicker.bitmapFonts = false;
+			datePicker.fontSize(20, 20, 20);
+			datePicker.selectedDate = new Date(2013,2,3,12,2,2,2);
 			datePicker.addEventListener(CalendarEvent.CHANGE, getdate);
 			datePicker.x = 25;
 			datePicker.y = 25;
 			
-			datePicker.calendarPlacement = "manual";
-			datePicker.calendarPoint = new Point(-100, -100);
+			//datePicker.calendarPlacement = "manual";
+			//datePicker.calendarPoint = new Point(-100, -100);
 			datePicker.alwaysShowCalendar = false;
 			holder.addChild(datePicker);
 			
