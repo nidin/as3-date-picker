@@ -53,7 +53,8 @@
   <!-- SWC Libraries -->
   <libraryPaths>
     <element path="lib\tweener.swc" />
-    <element path="src\DatePicker_swc.swc" />
+    <element path="lib\BitmapFont.swc" />
+    <element path="lib\fl.Libray.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>

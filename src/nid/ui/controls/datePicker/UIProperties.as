@@ -85,10 +85,11 @@
 		 */	
 		protected var _calendarWidth		:int		= 165;
 		protected var _calendarHeight		:int		= 178;
-		protected var cellWidth				:int		= 20
-		protected var cellHeight			:int		= 20
-		protected var yOffset				:int		= 40
-		protected var cellGap				:int		= 2
+		protected var cellWidth				:int		= 20;
+		protected var cellHeight			:int		= 20;
+		protected var xOffset				:int		= 5;
+		protected var yOffset				:int		= 40;
+		protected var cellGap				:int		= 2;
 		protected var labelWidth			:int		= 8;
 		
 		public function UIProperties() 

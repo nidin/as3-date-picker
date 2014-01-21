@@ -59,6 +59,7 @@
     <element path="lib\DatePicker-v4.5.swc" />
     <element path="lib\DatePicker-v4.5.rv1.swc" />
     <element path="lib\DatePicker-v4.6.swc" />
+    <element path="lib\DatePicker-v4.7.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>

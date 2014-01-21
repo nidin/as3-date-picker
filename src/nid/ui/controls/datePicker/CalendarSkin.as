@@ -147,8 +147,8 @@
 				currentDateLabel.name 			= 	"currentDateLabel";
 				currentDateLabel.selectable 	=	false;
 				currentDateLabel.width			=	_calendarWidth - (cellWidth * 2) - 10;
-				currentDateLabel.height			=	MonthAndYearFontSize + 6;
-				currentDateLabel.x				=	5 + cellWidth;				
+				currentDateLabel.height			=	MonthAndYearFontSize + 8;
+				currentDateLabel.x				=	xOffset + cellWidth;				
 				currentDateLabel.y				=	6;
 				
 			var format:TextFormat 	= 	new TextFormat();
@@ -174,11 +174,11 @@
 		 */
 			var nextBtn:Sprite 	= 	makeBtn(90);
 				nextBtn.name 	= 	"NextButton";
-				nextBtn.x 		= 	_calendarWidth - 5;
+				nextBtn.x 		= 	_calendarWidth - xOffset;
 				nextBtn.y 		= 	3 + currentDateLabel.height / 2;
 			var prevBtn:Sprite 	= 	makeBtn(270);
 				prevBtn.name 	= 	"PrevButton";
-				prevBtn.x 		= 	5; 
+				prevBtn.x 		= 	xOffset; 
 				prevBtn.y 		=	10 + currentDateLabel.height / 2;
 				
 				nextBtn.buttonMode 	= 	true;
@@ -222,8 +222,8 @@
 			}
 			
 			weekname	= 	new Sprite();
-			weekname.x 	=	5;
-			weekname.y 	=	currentDateLabel.y + currentDateLabel.height + 5;
+			weekname.x 	=	xOffset;
+			weekname.y 	=	currentDateLabel.y + currentDateLabel.height + xOffset;
 			
 			if (_startDay == "monday") {
 				_startID = 0;
@@ -249,7 +249,7 @@
 			
 			Calendar.addChild(weekname);
 			
-			yOffset = weekname.y + weekname.height + 5;
+			yOffset = weekname.y + weekname.height + xOffset;
 			//re-calculate cell height
 			cellHeight = ((_calendarHeight - (yOffset + 8) + cellGap) / 6) - cellGap;
 		}
@@ -324,7 +324,7 @@
 			
 			var dateBox		:MovieClip;
 			 	cellArray				= 	new Array();
-			var xpos		:Number		=	5;
+			var xpos		:Number		=	xOffset;
 			var ypos		:Number		=	yOffset;
 			var weekCount	:Number		=	0;
 			var endDate		:Date 		=	new Date(currentyear,currentmonth,_startID);			
@@ -355,7 +355,7 @@
 					if (weekCount == 6) {
 						weekCount = 0;
 						ypos += cellHeight + cellGap;
-						xpos = 5;
+						xpos = xOffset;
 					} else {
 						weekCount++;
 						xpos += cellWidth + cellGap;
@@ -413,7 +413,7 @@
 				if (weekCount == 6) {
 					weekCount = 0;
 					ypos += cellHeight + cellGap;
-					xpos = 5;
+					xpos = xOffset;
 				} else {
 					weekCount++;
 					xpos += cellWidth + cellGap;
