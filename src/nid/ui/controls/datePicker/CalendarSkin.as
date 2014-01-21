@@ -30,9 +30,7 @@
 		public function set WeekStart(s:String):void 
 		{ 
 			_startDay = s.toLowerCase();
-			if (_startDay == "monday") _startID = 0;
-			else if (_startDay == "sunday")_startID = 1;
-			weekname.text =	weekdisplay[_startID];
+			constructWeekNames();
 			ConstructCalendar();
 		}
 		public function set icon(b:Object):void { calendarIcon.configIcon(b); }
@@ -47,8 +45,16 @@
 		public function set setMouseOverColor(color:int):void { mouseOverCellColor = color;}
 		public function set setDateColor(color:int):void { entryTextColor = color; ConstructCalendar();}
 		
-		public function set setCalendarWidth(w:Number):void { calendarWidth = w; re_construct();}
-		public function set setCalendarHeight(h:Number):void { calendarHeight = h; re_construct();}			
+		public function set calendarWidth(w:Number):void { 
+			_calendarWidth = w;
+			cellWidth = ((w  - (10 + (cellGap * 6))) / 7);
+			re_construct();
+		}
+		public function set calendarHeight(h:Number):void { 
+			_calendarHeight = h;
+			cellHeight = ((h - (yOffset + 8) + cellGap) / 6) - cellGap;
+			re_construct();
+		}
 		
 		/*
 		 * SET FONT SIZE
@@ -60,6 +66,7 @@
 			DayFontSize = Day;
 			if (stage)
 			{
+				constructWeekNames();
 				ConstructCalendar();
 			}
 		}
@@ -107,8 +114,8 @@
 			var focalPointRatio			:Number		=	0;
 			var bgStrokeColor			:int		=	backgroundStrokeColor;
 			var bgStrokeThickness		:Number		=	1;
-			var bgWidth					:Number		=	calendarWidth;
-			var bgHeight				:Number		=	calendarHeight;
+			var bgWidth					:Number		=	_calendarWidth;
+			var bgHeight				:Number		=	_calendarHeight;
 			
 			colorMatrix.createGradientBox(bgWidth,bgHeight,0,0,0);
 			
@@ -126,7 +133,7 @@
 			  focalPointRatio
 			  );
 			  
-			bg.graphics.drawRect(0,0,calendarWidth,calendarHeight);
+			bg.graphics.drawRect(0,0,_calendarWidth,_calendarHeight);
 			bg.graphics.endFill();
 			
 			Calendar.addChild(bg);
@@ -138,56 +145,41 @@
 				currentDateLabel		 		= 	new TextField();
 				currentDateLabel.embedFonts 	=	embedFonts;
 				currentDateLabel.name 			= 	"currentDateLabel";
-				currentDateLabel.autoSize		=	TextFieldAutoSize.CENTER;
 				currentDateLabel.selectable 	=	false;
-				currentDateLabel.width			=	66;
-				currentDateLabel.y				=	6;				
+				currentDateLabel.width			=	_calendarWidth - (cellWidth * 2) - 10;
+				currentDateLabel.height			=	MonthAndYearFontSize + 6;
+				currentDateLabel.x				=	5 + cellWidth;				
+				currentDateLabel.y				=	6;
 				
 			var format:TextFormat 	= 	new TextFormat();
 				format.font			=	_font;
 				format.color		=	labelColor;
 				format.size			=	MonthAndYearFontSize;
 				format.bold			=	true;
+				format.align		= 	"center";
 				
 			currentDateLabel.defaultTextFormat	=	format;
 			currentDateLabel.text				=	"";
 			
+			Calendar.addChild(currentDateLabel);
 		 
 			/**
 			 * MAKE WEEK DISPLAY
 			 */
-				format.letterSpacing 			=	letterSpacing;
-				format.size						=	WeekNameFontSize;
-				weekname	 					= 	new TextField();
-				weekname.embedFonts  			=	embedFonts;
-				weekname.blendMode     			=	BlendMode.LAYER;
-				weekname.selectable				=	false;				
-				weekname.antiAliasType			= 	AntiAliasType.ADVANCED;
-				weekname.defaultTextFormat		=	format;
-				if (_startDay == "monday") {
-					_startID = 0;
-				}else if (_startDay == "sunday") {
-					_startID = 1;
-				}
-				weekname.text					=	weekdisplay[_startID];
-				weekname.width					=	165;					
-				weekname.x						=	11;
-				weekname.y 						=	23;
+			constructWeekNames();
 			
-			Calendar.addChild(currentDateLabel);
-			Calendar.addChild(weekname);
 			
 		/*
 		 *	MAKE MONTH CHANGER BUTTONS
 		 */
 			var nextBtn:Sprite 	= 	makeBtn(90);
 				nextBtn.name 	= 	"NextButton";
-				nextBtn.x 		= 	160; 
-				nextBtn.y 		= 	11;
+				nextBtn.x 		= 	_calendarWidth - 5;
+				nextBtn.y 		= 	3 + currentDateLabel.height / 2;
 			var prevBtn:Sprite 	= 	makeBtn(270);
 				prevBtn.name 	= 	"PrevButton";
 				prevBtn.x 		= 	5; 
-				prevBtn.y 		=	18;
+				prevBtn.y 		=	10 + currentDateLabel.height / 2;
 				
 				nextBtn.buttonMode 	= 	true;
 				prevBtn.buttonMode	=	true;
@@ -213,6 +205,53 @@
 			
 			ConstructCalendar();
 			
+		}
+		
+		protected function constructWeekNames():void 
+		{
+			var format:TextFormat 	= 	new TextFormat();
+				format.font			=	_font;
+				format.color		=	labelColor;
+				format.size			=	MonthAndYearFontSize;
+				format.bold			=	true;
+				format.align		= 	"center";
+				format.size			=	WeekNameFontSize;
+			
+			if (weekname && Calendar.contains(weekname)) {
+				Calendar.removeChild(weekname);
+			}
+			
+			weekname	= 	new Sprite();
+			weekname.x 	=	5;
+			weekname.y 	=	currentDateLabel.y + currentDateLabel.height + 5;
+			
+			if (_startDay == "monday") {
+				_startID = 0;
+			}else if (_startDay == "sunday") {
+				_startID = 1;
+			}
+			
+			var weekNames:Array = weekdisplay[_startID].split("");
+			
+			for (var i:int = 0; i < 7; i++) {
+				var t:TextField = new TextField();
+				t.embedFonts  			=	embedFonts;
+				t.blendMode     		=	BlendMode.LAYER;
+				t.selectable			=	false;				
+				t.antiAliasType			= 	AntiAliasType.ADVANCED;
+				t.defaultTextFormat		=	format;
+				t.text					=	weekNames[i];
+				t.width 				=	cellWidth;
+				t.height 				=	WeekNameFontSize + 6;
+				t.x 					=	(cellWidth + cellGap) * i;
+				weekname.addChild(t);
+			}
+			
+			Calendar.addChild(weekname);
+			
+			yOffset = weekname.y + weekname.height + 5;
+			//re-calculate cell height
+			cellHeight = ((_calendarHeight - (yOffset + 8) + cellGap) / 6) - cellGap;
 		}
 		
 		public function flush():void 
@@ -286,7 +325,7 @@
 			var dateBox		:MovieClip;
 			 	cellArray				= 	new Array();
 			var xpos		:Number		=	5;
-			var ypos		:Number		=	40;
+			var ypos		:Number		=	yOffset;
 			var weekCount	:Number		=	0;
 			var endDate		:Date 		=	new Date(currentyear,currentmonth,_startID);			
 			var endDay		:Number		=	endDate.getDay();
@@ -307,19 +346,19 @@
 					dateBox.id 		= 	disabledCellColor;
 					dateBox.isToday	=	false;
 					dateBox.name	=	"D"+inc_1;
-					dateBox.x		=	xpos+2;
-					dateBox.y		=	ypos+2;
+					dateBox.x		=	xpos + cellGap;
+					dateBox.y		=	ypos + cellGap;
 					cellArray.push(dateBox);
 				
 					Calendar.addChild(dateBox);
 				
 					if (weekCount == 6) {
 						weekCount = 0;
-						ypos += 22;
+						ypos += cellHeight + cellGap;
 						xpos = 5;
 					} else {
 						weekCount++;
-						xpos += 22;
+						xpos += cellWidth + cellGap;
 					}					
 					inc_1++;
 				}
@@ -365,19 +404,19 @@
 					dateBox.isToday	=	false;
 				}
 				dateBox.name	=	"D"+(restNum + inc_1);
-				dateBox.x		=	xpos+2;
-				dateBox.y		=	ypos+2;
+				dateBox.x		=	xpos + cellGap;
+				dateBox.y		=	ypos + cellGap;
 				cellArray.push(dateBox);
 				
 				Calendar.addChild(dateBox);
 				
 				if (weekCount == 6) {
 					weekCount = 0;
-					ypos += 22;
+					ypos += cellHeight + cellGap;
 					xpos = 5;
 				} else {
 					weekCount++;
-					xpos += 22;
+					xpos += cellWidth + cellGap;
 				}
 				restNum++;
 				entryNum++;
@@ -405,7 +444,7 @@
 			day_bg.graphics.endFill();
 			
 			hit.graphics.beginFill(0x000000,0);
-			hit.graphics.drawRect(0,0,cellWidth,cellHeight);
+			hit.graphics.drawRect(0, 0, cellWidth, cellHeight);
 			hit.graphics.endFill();				
 			
 			day_txt.autoSize 		= TextFieldAutoSize.CENTER;
@@ -414,9 +453,7 @@
 			//day_txt.antiAliasType	= AntiAliasType.ADVANCED;
 			day_txt.multiline		= false;
 			day_txt.selectable 		= false;
-			day_txt.width 			= cellWidth;
-			day_txt.x 				= 9;
-			day_txt.y 				= 1;
+			//day_txt.width 			= cellWidth;
 			
 			var format:TextFormat 			
 			
@@ -442,6 +479,9 @@
 				hit.buttonMode 				=	true;
 			}
 			
+			day_txt.x 				= (cellWidth - day_txt.width) / 2;
+			day_txt.y 				= (cellHeight - day_txt.height) / 2;
+			
 			day_bg.addChild(day_txt);
 			day_bg.addChild(hit);
 			
@@ -453,18 +493,18 @@
 		public function changeColor(mc:Sprite,color:uint):void{			
 			mc.graphics.clear();
 			mc.graphics.beginFill(color);
-			mc.graphics.drawRect(0,0,20,20);
+			mc.graphics.drawRect(0, 0, cellWidth, cellHeight);
 			mc.graphics.endFill();
 		}
 		/*
 		 * BUTTON GRAPHICS CONSTRUCTOR
 		 */
-		private function makeBtn(arg2:Number):Sprite
+		private function makeBtn(rot:Number):Sprite
 		{
 			var triangleHeight:uint=6;
 			var triangleShape:Sprite = new Sprite();
-			var w:Number = 20;
-			var h:Number = 20;
+			var w:Number = cellWidth;
+			var h:Number = cellHeight;
 			triangleShape.graphics.clear();
 			triangleShape.graphics.beginFill(0xffffff, 0);
 			triangleShape.graphics.drawRect(-7, 0, w, h);
@@ -475,7 +515,7 @@
 			triangleShape.graphics.lineTo(triangleHeight, triangleHeight+5);
 			triangleShape.graphics.lineTo(0, triangleHeight+5);
 			triangleShape.graphics.lineTo(triangleHeight/2, 5);
-			triangleShape.rotation = arg2;			
+			triangleShape.rotation = rot;			
 			return(triangleShape);
 		}
 	}

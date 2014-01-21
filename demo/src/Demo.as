@@ -33,6 +33,8 @@ package
 			addChild(holder);
 			
 			datePicker = new DatePicker();
+			//datePicker.setCalendarWidth = 500;
+			//datePicker.setCalendarHeight = 500;
 			datePicker.icon = new icon_img();
 			datePicker.hideOnFocusOut = true;
 			datePicker.dateFormat = "DD/MM/YYYY"

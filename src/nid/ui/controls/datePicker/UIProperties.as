@@ -39,7 +39,7 @@
 		protected var _prompt			:String;
 		protected var _prompt_bkp		:String = "Select Date";
 		protected var _dateFormat		:String = "DD/MM/YYYY";
-		protected var weekname			:TextField;
+		protected var weekname			:Sprite;
 		protected var Days				:Array;
 		protected var weekdisplay		:Array	=	["MTWTFSS","SMTWTFS"]
 		protected var Months			:Array	= 	["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -83,11 +83,13 @@
 		/*
 		 *	CALENDAR DIAMENSIONS VARIABLES		 
 		 */	
-		protected var calendarWidth			:Number		= 165;
-		protected var calendarHeight		:Number		= 178;
-		protected var cellWidth				:Number		= 20
-		protected var cellHeight			:Number		= 20
-		protected var labelWidth			:Number		= 8;
+		protected var _calendarWidth		:int		= 165;
+		protected var _calendarHeight		:int		= 178;
+		protected var cellWidth				:int		= 20
+		protected var cellHeight			:int		= 20
+		protected var yOffset				:int		= 40
+		protected var cellGap				:int		= 2
+		protected var labelWidth			:int		= 8;
 		
 		public function UIProperties() 
 		{

@@ -61,11 +61,8 @@
 				var format:TextFormat = currentDateLabel.getTextFormat();
 				format.font = _font;
 				currentDateLabel.defaultTextFormat = format;
-				currentDateLabel.setTextFormat(format);
-				format = weekname.getTextFormat();
-				format.font = _font;
-				weekname.defaultTextFormat = format;
-				weekname.setTextFormat(format);
+				currentDateLabel.text = currentDateLabel.text;
+				constructWeekNames();
 				ConstructCalendar();
 			}
 		}
@@ -79,7 +76,7 @@
 		public function set days(value:Array):void 
 		{ 
 			weekdisplay = value; 
-			weekname.text	=	weekdisplay[_startID];
+			constructWeekNames();
 		}
 		
 		public final function DatePicker() {
