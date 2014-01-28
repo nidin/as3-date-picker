@@ -1,16 +1,11 @@
 ﻿package nid.ui.controls.datePicker
 {
-	import flash.display.Bitmap;
-	import flash.display.BlendMode;
+	import fl.core.UIComponent;
 	import flash.display.GradientType;
-	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.geom.Point;
-	import flash.text.Font;
 	import flash.text.TextField;
-	import flash.text.TextFormat;
 	import flash.ui.ContextMenu;
-	import fl.core.UIComponent;
 	/**
 	 * ...
 	 * @author Nidin Vinayak
@@ -24,15 +19,15 @@
 		public var isHidden				:Boolean;
 		public var calendarIcon			:iconSprite;		
 		public var dateField			:DateField;
-		public var myMenu			 	:ContextMenu;
-		public var oldHit		 		:* = undefined;	
+		public var _contextMenu		 	:ContextMenu;
+		public var oldHit		 		:int;	
 		public var _font				:String = "Tahoma";
 		public var embedFonts			:Boolean = false;
 		public var bitmapFonts			:Boolean = true;
 		public var letterSpacing		:Number = 13;
-		public var MonthAndYearFontSize	:Number = 12;
-		public var WeekNameFontSize		:Number = 12;
-		public var DayFontSize			:Number = 10;
+		public var monthAndYearFontSize	:Number = 12;
+		public var weekNameFontSize		:Number = 12;
+		public var dayFontSize			:Number = 10;
 		public var hideOnFocusOut		:Boolean = true;
 		public var _alwaysShowCalendar	:Boolean = false;
 		
@@ -40,18 +35,18 @@
 		protected var _prompt_bkp		:String = "Select Date";
 		protected var _dateFormat		:String = "DD/MM/YYYY";
 		protected var weekname			:Sprite;
-		protected var Days				:Array;
+		protected var _days				:Array;
 		protected var weekdisplay		:Array	=	["MTWTFSS","SMTWTFS"]
-		protected var Months			:Array	= 	["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+		protected var _months			:Array	= 	["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 		protected var _iconPosition		:String = "right";
 		protected var _calendarPosition	:String = "right";
-		protected var Calendar			:MovieClip;
+		protected var calendar			:Sprite;
 		protected var _calendarPoint	:Point = new Point();
 		protected var inited			:Boolean	=	false;
 		protected var isHitted			:Object;
-		protected var cellArray			:Array;
+		protected var cellArray			:Vector.<DateCell>;
 		protected var isToday			:Boolean	=	false;
-		protected var DaysinMonth		:Array;
+		protected var _daysInMonth		:Array;
 		protected var prevDate			:Number;
 		protected var today				:Date;
 		protected var todaysday			:Number;
@@ -59,12 +54,9 @@
 		protected var currentmonth		:Number;
 		protected var currentDateLabel	:TextField;
 		protected var _selectedDate		:Date;
-		protected var day_bg			:MovieClip;
-		protected var hit				:Sprite;
-		protected var day_txt			:TextField;
 		protected var _startDay			:String = "sunday";
 		protected var _startID			:int = 1;
-		protected var todayDateBox		:MovieClip;
+		protected var todayDateBox		:DateCell;
 		
 		/*
 		 * COLOR VARIABLES

@@ -40,14 +40,14 @@
 				_selectedDate = new Date();
 				currentmonth = _selectedDate.getMonth();
 				currentyear  = _selectedDate.getFullYear();
-				ConstructCalendar();
+				constructCalendar();
 				_selectedDate = null;
 			}
 			else
 			{
 				currentmonth = _selectedDate.getMonth();
 				currentyear  = _selectedDate.getFullYear();
-				ConstructCalendar();
+				constructCalendar();
 				setDateField(); 
 				_prompt = dateField.text;
 			}
@@ -63,14 +63,14 @@
 				currentDateLabel.defaultTextFormat = format;
 				currentDateLabel.text = currentDateLabel.text;
 				constructWeekNames();
-				ConstructCalendar();
+				constructCalendar();
 			}
 		}
 		
 		public function set months(value:Array):void 
 		{
-			Months = value;
-			if (currentDateLabel != null) currentDateLabel.text	=	Months[currentmonth] + " - " + currentyear;
+			_months = value;
+			if (currentDateLabel != null) currentDateLabel.text	=	_months[currentmonth] + " - " + currentyear;
 		}		
 		
 		public function set days(value:Array):void 
@@ -80,7 +80,7 @@
 		}
 		
 		public final function DatePicker() {
-			Construct();
+			construct();
 			dateField = new DateField();
 			addChild(dateField);
 			calendarIcon = new iconSprite();
@@ -88,14 +88,14 @@
 			calendarIcon.configIcon(new default_icon());
 			addChild(calendarIcon);
 			addEventListener(CalendarEvent.UPDATE, update);
-			this.addEventListener(Event.ADDED_TO_STAGE, updateUI);
+			this.addEventListener(Event.ADDED_TO_STAGE, init);
 		}
 		
-		private function updateUI(e:Event):void 
+		private function init(e:Event):void 
 		{
-			this.removeEventListener(Event.ADDED_TO_STAGE, updateUI);
-			addCustomMenuItems();
-			Construct();
+			this.removeEventListener(Event.ADDED_TO_STAGE, init);
+			addContextMenuItems();
+			construct();
 			update(null);
 		}
 		
@@ -107,16 +107,16 @@
 			if (Capabilities.touchscreenType == TouchscreenType.NONE)
 			{
 				calendarIcon.addEventListener(MouseEvent.CLICK,showHideCalendar);
-				Calendar.addEventListener(MouseEvent.MOUSE_OVER, onOver);
-				Calendar.addEventListener(MouseEvent.MOUSE_OUT, onOut);
-				Calendar.addEventListener(MouseEvent.CLICK, onClick);
+				calendar.addEventListener(MouseEvent.MOUSE_OVER, onOver);
+				calendar.addEventListener(MouseEvent.MOUSE_OUT, onOut);
+				calendar.addEventListener(MouseEvent.CLICK, onClick);
 			}
 			else
 			{
-				Calendar.addEventListener(TouchEvent.TOUCH_TAP, onClick);
+				calendar.addEventListener(TouchEvent.TOUCH_TAP, onClick);
 				calendarIcon.addEventListener(TouchEvent.TOUCH_TAP, showHideCalendar);
-				Calendar.addEventListener(TouchEvent.TOUCH_OVER, onOver);
-				Calendar.addEventListener(TouchEvent.TOUCH_OUT, onOut);
+				calendar.addEventListener(TouchEvent.TOUCH_OVER, onOver);
+				calendar.addEventListener(TouchEvent.TOUCH_OUT, onOut);
 			}
 			isInited = true;
 		}
@@ -171,7 +171,7 @@
 			return _iconPosition;
 		}
 		/**
-		 * Calendar Placement
+		 * calendar Placement
 		 */
 		[Inspectable(enumeration = "left,right,top,bottom,top-left,top-right,bottom-left,bottom-right,manual",
 		defaultValue="right", name="calendarPlacement")]
@@ -212,7 +212,7 @@
 					
 					case "left":
 					{
-						_calendarPoint.x = - (Calendar.width - 5);
+						_calendarPoint.x = - (calendar.width - 5);
 						_calendarPoint.y = 0;
 					}
 					break;
@@ -220,7 +220,7 @@
 					case "top":
 					{
 						_calendarPoint.x = 0;
-						_calendarPoint.y = -(Calendar.height + 5);
+						_calendarPoint.y = -(calendar.height + 5);
 					}
 					break;
 					
@@ -233,21 +233,21 @@
 					
 					case "top-left":
 					{
-						_calendarPoint.x = - (Calendar.width - 5);
-						_calendarPoint.y = -(Calendar.height + 5);
+						_calendarPoint.x = - (calendar.width - 5);
+						_calendarPoint.y = -(calendar.height + 5);
 					}
 					break;
 					
 					case "top-right":
 					{
 						_calendarPoint.x = calendarIcon.x + calendarIcon.width + 5;
-						_calendarPoint.y = -(Calendar.height + 5);
+						_calendarPoint.y = -(calendar.height + 5);
 					}
 					break;
 					
 					case "bottom-left":
 					{
-						_calendarPoint.x = - (Calendar.width - 5);
+						_calendarPoint.x = - (calendar.width - 5);
 						_calendarPoint.y = dateField.height + 5;
 					}
 					break;
@@ -276,7 +276,7 @@
 					
 					case "left":
 					{
-						_calendarPoint.x = - (Calendar.width - 5);
+						_calendarPoint.x = - (calendar.width - 5);
 						_calendarPoint.y = 0;
 					}
 					break;
@@ -284,7 +284,7 @@
 					case "top":
 					{
 						_calendarPoint.x = 0;
-						_calendarPoint.y = -(Calendar.height + 5);
+						_calendarPoint.y = -(calendar.height + 5);
 					}
 					break;
 					
@@ -297,8 +297,8 @@
 					
 					case "top-left":
 					{
-						_calendarPoint.x = - (Calendar.width - 5);
-						_calendarPoint.y = -(Calendar.height + 5);
+						_calendarPoint.x = - (calendar.width - 5);
+						_calendarPoint.y = -(calendar.height + 5);
 					}
 					break;
 					
@@ -311,7 +311,7 @@
 					
 					case "bottom-left":
 					{
-						_calendarPoint.x = - (Calendar.width - 5);
+						_calendarPoint.x = - (calendar.width - 5);
 						_calendarPoint.y = dateField.height + 5;
 					}
 					break;
@@ -325,17 +325,17 @@
 				}
 			}	
 			var pt:Point  = this.localToGlobal(_calendarPoint);
-			Calendar.x = pt.x;
-			Calendar.y = pt.y;
+			calendar.x = pt.x;
+			calendar.y = pt.y;
 		}
 		/*
 		 *	CONTEXT MENU 
 		 * 
 		 */
-        private function addCustomMenuItems():void {
+        private function addContextMenuItems():void {
 			
-			myMenu = new ContextMenu();
-            myMenu.hideBuiltInItems();
+			_contextMenu = new ContextMenu();
+            _contextMenu.hideBuiltInItems();
             var menu1:ContextMenuItem;
 			var menu2:ContextMenuItem;
             menu1 = null;
@@ -343,9 +343,9 @@
             menu2 = new ContextMenuItem("Follow us");			
             menu1.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT, navigateToSite);
 			menu2.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT, navigateToSite);
-            myMenu.customItems.push(menu1);
-			myMenu.customItems.push(menu2);
-            this.contextMenu = myMenu;
+            _contextMenu.customItems.push(menu1);
+			_contextMenu.customItems.push(menu2);
+            this.contextMenu = _contextMenu;
             return;
         }	
         private function navigateToSite(e:ContextMenuEvent):void
@@ -367,14 +367,14 @@
 			}
 			if (isHidden) {
 				relocate();
-				stage.addChild(Calendar);
-				Tweener.addTween(Calendar, { alpha:1, time:1, transition:"easeOutExpo" } );
+				stage.addChild(calendar);
+				Tweener.addTween(calendar, { alpha:1, time:1, transition:"easeOutExpo" } );
 				isHidden	=	false;
 				try{
 					if (hideOnFocusOut) stage.addEventListener(MouseEvent.MOUSE_UP, showHideCalendar);
 				}catch (e:Error) {}
 			}else {
-				Tweener.addTween(Calendar, { alpha:0, time:0.5, transition:"easeOutExpo",onComplete:function ():void{ stage.removeChild(Calendar); } } );
+				Tweener.addTween(calendar, { alpha:0, time:0.5, transition:"easeOutExpo",onComplete:function ():void{ stage.removeChild(calendar); } } );
 				isHidden	=	true;
 				try{
 					if (hideOnFocusOut) stage.removeEventListener(MouseEvent.MOUSE_UP, showHideCalendar);
@@ -387,15 +387,15 @@
 			if (value && isHidden)
 			{
 				isHidden	=	false;
-				if (stage != null) stage.addChild(Calendar);
-				Tweener.addTween(Calendar, { alpha:1, time:1, transition:"easeOutExpo" } );
+				if (stage != null) stage.addChild(calendar);
+				Tweener.addTween(calendar, { alpha:1, time:1, transition:"easeOutExpo" } );
 			}
 			else if(!value && !isHidden)
 			{
 				isHidden	=	true;
-				if(stage != null && stage.contains(Calendar))
-					stage.removeChild(Calendar);
-				Calendar.alpha = 0;
+				if(stage != null && stage.contains(calendar))
+					stage.removeChild(calendar);
+				calendar.alpha = 0;
 			}
 		}
 		public function onOver(e:Event):void {
@@ -424,7 +424,7 @@
 					e.target.parent.hitted		=	true;
 					isHitted.status 			=	true;
 					isHitted.num				=	e.target.parent.serial;
-					if(oldHit != undefined){
+					if(oldHit){
 						cellArray[oldHit].hitted 	= 	false;
 						changeColor(cellArray[oldHit],cellArray[oldHit].id);
 					}

@@ -4,7 +4,7 @@
 	import flash.display.Bitmap;
 	import flash.events.MouseEvent;
 	import flash.display.Sprite;
-	import flash.display.MovieClip;
+	import flash.display.Sprite;
 	import flash.display.GradientType;
 	import flash.display.InterpolationMethod;
 	import flash.display.SpreadMethod;
@@ -31,7 +31,7 @@
 		{ 
 			_startDay = s.toLowerCase();
 			constructWeekNames();
-			ConstructCalendar();
+			constructCalendar();
 		}
 		public function set icon(b:Object):void { calendarIcon.configIcon(b); }
 		public function set setBackgroundColor(color:Array):void { backgroundColor = color; re_construct();}
@@ -39,11 +39,11 @@
 		public function set setBackgroundStrokeColor(color:int):void { backgroundStrokeColor = color; re_construct();}
 		public function set setLabelColor(color:int):void { labelColor = color; re_construct();}
 		public function set setButtonColor(color:int):void { buttonColor = color; re_construct();}
-		public function set setDisabledCellColor(color:int):void { disabledCellColor = color; ConstructCalendar();}
-		public function set setEnabledCellColor(color:int):void { enabledCellColor = color; ConstructCalendar();}
+		public function set setDisabledCellColor(color:int):void { disabledCellColor = color; constructCalendar();}
+		public function set setEnabledCellColor(color:int):void { enabledCellColor = color; constructCalendar();}
 		public function set setTodayCellColor(color:int):void { TodayCellColor = color; changeColor(todayDateBox, color); }
 		public function set setMouseOverColor(color:int):void { mouseOverCellColor = color;}
-		public function set setDateColor(color:int):void { entryTextColor = color; ConstructCalendar();}
+		public function set setDateColor(color:int):void { entryTextColor = color; constructCalendar();}
 		
 		public function set calendarWidth(w:Number):void { 
 			_calendarWidth = w;
@@ -61,13 +61,13 @@
 		 * 
 		 */
 		public function fontSize(MonthAndYear:Number = 12, WeekName:Number = 12, Day:Number = 10):void {			
-			MonthAndYearFontSize = MonthAndYear;
-			WeekNameFontSize = WeekName;
-			DayFontSize = Day;
+			monthAndYearFontSize = MonthAndYear;
+			weekNameFontSize = WeekName;
+			dayFontSize = Day;
 			if (stage)
 			{
 				constructWeekNames();
-				ConstructCalendar();
+				constructCalendar();
 			}
 		}
 		/*
@@ -76,7 +76,7 @@
 		 */
 		public function setGlow(color:uint=0,alpha:Number=0.2,blurX:Number=6,blurY:Number=6,strength:Number=2,quality:int=1,inner:Boolean=false,knockout:Boolean=false):void {
 			var filter:GlowFilter = new GlowFilter(color, alpha, blurX, blurY, strength, quality, inner, knockout);
-			Calendar.filters = new Array(filter);
+			calendar.filters = new Array(filter);
 		}
 		/*
 		 *	MAIN
@@ -88,17 +88,17 @@
 		protected function re_construct():void { 
 			if (stage)
 			{
-				Construct();
+				construct();
 				dispatchEvent(new CalendarEvent(CalendarEvent.UPDATE));
 			}
 		}
-		protected function Construct():void 
+		protected function construct():void 
 		{
 			flush();
-			Calendar = new MovieClip();
+			calendar = new Sprite();
 			isHitted = new Object();
-			Calendar.alpha 	= 0;
-			Calendar.cacheAsBitmap = true;
+			calendar.alpha 	= 0;
+			calendar.cacheAsBitmap = true;
 			setGlow();
 			/*
 			 *  DRAW CALENDAR BACKGROUND
@@ -136,7 +136,7 @@
 			bg.graphics.drawRect(0,0,_calendarWidth,_calendarHeight);
 			bg.graphics.endFill();
 			
-			Calendar.addChild(bg);
+			calendar.addChild(bg);
 			
 			/*
 			 *	MAKE CURRENT DATE DISPLAY
@@ -147,21 +147,21 @@
 				currentDateLabel.name 			= 	"currentDateLabel";
 				currentDateLabel.selectable 	=	false;
 				currentDateLabel.width			=	_calendarWidth - (cellWidth * 2) - 10;
-				currentDateLabel.height			=	MonthAndYearFontSize + 8;
+				currentDateLabel.height			=	monthAndYearFontSize + 8;
 				currentDateLabel.x				=	xOffset + cellWidth;				
 				currentDateLabel.y				=	6;
 				
 			var format:TextFormat 	= 	new TextFormat();
 				format.font			=	_font;
 				format.color		=	labelColor;
-				format.size			=	MonthAndYearFontSize;
+				format.size			=	monthAndYearFontSize;
 				format.bold			=	true;
 				format.align		= 	"center";
 				
 			currentDateLabel.defaultTextFormat	=	format;
 			currentDateLabel.text				=	"";
 			
-			Calendar.addChild(currentDateLabel);
+			calendar.addChild(currentDateLabel);
 		 
 			/**
 			 * MAKE WEEK DISPLAY
@@ -187,8 +187,8 @@
 			nextBtn.addEventListener(MouseEvent.CLICK, clickHandler, false, 0, true);
 			prevBtn.addEventListener(MouseEvent.CLICK, clickHandler, false, 0, true);
 			
-			Calendar.addChild(nextBtn);
-			Calendar.addChild(prevBtn);
+			calendar.addChild(nextBtn);
+			calendar.addChild(prevBtn);
 			
 			
 		/*
@@ -199,11 +199,11 @@
 			todaysday		 =	today.getDay();
 			currentyear		 =	today.getFullYear();
 			currentmonth	 =	today.getMonth();
-			DaysinMonth		 =	[31, isLeapYear(currentyear)?29:28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+			_daysInMonth		 =	[31, isLeapYear(currentyear)?29:28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 			
-			currentDateLabel.text	=	Months[currentmonth]+" - "+currentyear;
+			currentDateLabel.text	=	_months[currentmonth]+" - "+currentyear;
 			
-			ConstructCalendar();
+			constructCalendar();
 			
 		}
 		
@@ -212,13 +212,13 @@
 			var format:TextFormat 	= 	new TextFormat();
 				format.font			=	_font;
 				format.color		=	labelColor;
-				format.size			=	MonthAndYearFontSize;
+				format.size			=	monthAndYearFontSize;
 				format.bold			=	true;
 				format.align		= 	"center";
-				format.size			=	WeekNameFontSize;
+				format.size			=	weekNameFontSize;
 			
-			if (weekname && Calendar.contains(weekname)) {
-				Calendar.removeChild(weekname);
+			if (weekname && calendar.contains(weekname)) {
+				calendar.removeChild(weekname);
 			}
 			
 			weekname	= 	new Sprite();
@@ -242,12 +242,12 @@
 				t.defaultTextFormat		=	format;
 				t.text					=	weekNames[i];
 				t.width 				=	cellWidth;
-				t.height 				=	WeekNameFontSize + 6;
+				t.height 				=	weekNameFontSize + 6;
 				t.x 					=	(cellWidth + cellGap) * i;
 				weekname.addChild(t);
 			}
 			
-			Calendar.addChild(weekname);
+			calendar.addChild(weekname);
 			
 			yOffset = weekname.y + weekname.height + xOffset;
 			//re-calculate cell height
@@ -256,11 +256,11 @@
 		
 		public function flush():void 
 		{
-			if (this.stage != null && Calendar != null && this.stage.contains(Calendar))
+			if (this.stage != null && calendar != null && this.stage.contains(calendar))
 			{
-				stage.removeChild(Calendar);
+				stage.removeChild(calendar);
 			}
-			Calendar = null;
+			calendar = null;
 		}
 		public function clickHandler(e:MouseEvent):void{
 			switch (e.target.name) {
@@ -295,7 +295,7 @@
 					changeYear(1);
 				}
 			}
-			ConstructCalendar();
+			constructCalendar();
 			return;
 		}
 		/*
@@ -304,7 +304,7 @@
 		public function changeYear(yearNum:Number):void {
 			currentyear = currentyear + yearNum;
 			if (yearNum != 1) { currentmonth = 11; } else { currentmonth = 0; }
-			DaysinMonth[1] = isLeapYear(currentyear)?29:28;
+			_daysInMonth[1] = isLeapYear(currentyear)?29:28;
 			return;
 		}
 		
@@ -317,13 +317,13 @@
 		/*
 		 *	CALENDAR CONSTRUCTOR
 		 */
-		public function ConstructCalendar():void{
+		public function constructCalendar():void{
 			if(inited){
 				removeEntry();				
 			}
 			
-			var dateBox		:MovieClip;
-			 	cellArray				= 	new Array();
+			var dateBox		:DateCell;
+			 	cellArray				= 	new Vector.<DateCell>();
 			var xpos		:Number		=	xOffset;
 			var ypos		:Number		=	yOffset;
 			var weekCount	:Number		=	0;
@@ -342,7 +342,7 @@
 			if (endDay > 0) {
 				var inc_1:Number = 0;
 				while (inc_1 < endDay) {
-					dateBox 		= 	Construct_Date_Element(disabledCellColor,inc_1,false);
+					dateBox 		= 	createDataCell(disabledCellColor,inc_1,false);
 					dateBox.id 		= 	disabledCellColor;
 					dateBox.isToday	=	false;
 					dateBox.name	=	"D"+inc_1;
@@ -350,7 +350,7 @@
 					dateBox.y		=	ypos + cellGap;
 					cellArray.push(dateBox);
 				
-					Calendar.addChild(dateBox);
+					calendar.addChild(dateBox);
 				
 					if (weekCount == 6) {
 						weekCount = 0;
@@ -367,14 +367,14 @@
 			 *	CONSTRUCT DATE ENTRY CELLS
 			 */			
 			var entryNum:int 		= 	1;
-			currentDateLabel.text	=	Months[currentmonth]+" - "+currentyear;
+			currentDateLabel.text	=	_months[currentmonth]+" - "+currentyear;
 			
 			var restNum:int = endDay;
 
 			while (restNum < 42) {
-				if (entryNum <= DaysinMonth[currentmonth]) {
+				if (entryNum <= _daysInMonth[currentmonth]) {
 					if (locDate.getDate()== entryNum && isToday == true) {
-						dateBox 		= 	Construct_Date_Element(TodayCellColor,entryNum,true);
+						dateBox 		= 	createDataCell(TodayCellColor,entryNum,true);
 						dateBox.id 		= 	TodayCellColor;
 						dateBox.hitted	=	false;
 						dateBox.serial	=	restNum;
@@ -383,10 +383,10 @@
 						todayDateBox  	= dateBox;
 					}else{
 						/*if(dateBox.hitted){
-							dateBox 		= 	Construct_Date_Element(mouseOverCellColor,entryNum,true);
+							dateBox 		= 	createDataCell(mouseOverCellColor,entryNum,true);
 							dateBox.hitted	=	true;
 						}else{*/
-							dateBox 		= 	Construct_Date_Element(enabledCellColor,entryNum,true);
+							dateBox 		= 	createDataCell(enabledCellColor,entryNum,true);
 							dateBox.hitted	=	false;
 						//}						
 						dateBox.id 		= 	enabledCellColor;
@@ -399,7 +399,7 @@
 			/*
 			 *	CONSTRUCT SECOND SET OF DESABLED DATE CELLS 
 			 */			
-					dateBox 		= 	Construct_Date_Element(disabledCellColor,entryNum,false);
+					dateBox 		= 	createDataCell(disabledCellColor,entryNum,false);
 					dateBox.id 		= 	disabledCellColor;
 					dateBox.isToday	=	false;
 				}
@@ -408,7 +408,7 @@
 				dateBox.y		=	ypos + cellGap;
 				cellArray.push(dateBox);
 				
-				Calendar.addChild(dateBox);
+				calendar.addChild(dateBox);
 				
 				if (weekCount == 6) {
 					weekCount = 0;
@@ -424,68 +424,47 @@
 		}
 		public function removeEntry():void{
 			for(var i:int=0;i<42;i++){
-				if (Calendar.contains(cellArray[i])) Calendar.removeChild(cellArray[i]);
+				if (calendar.contains(cellArray[i])) calendar.removeChild(cellArray[i]);
 			}
-			cellArray = [];
+			cellArray = new Vector.<DateCell>();
 		}
 		/*
 		 *	DATE CELL CONSTRUCTOR FUNCTION [RETURNS MOVIECLIP] 
 		 */
-		public function Construct_Date_Element(cellColor:int,day:int,isEntry:Boolean):MovieClip {
-				day_bg			= 	new MovieClip();
-				hit				= 	new Sprite();
-				day_txt			=	new TextField();
-				
-				day_bg.name	 	= 	"bg";
-				day_txt.name 	= 	"txt";
+		public function createDataCell(cellColor:int, day:int, isEntry:Boolean):DateCell {
 			
-			day_bg.graphics.beginFill(cellColor,1);
-			day_bg.graphics.drawRect(0,0,cellWidth,cellHeight);
-			day_bg.graphics.endFill();
+			var dateCell:DateCell	= 	new DateCell(cellColor, cellWidth, cellHeight);
 			
-			hit.graphics.beginFill(0x000000,0);
-			hit.graphics.drawRect(0, 0, cellWidth, cellHeight);
-			hit.graphics.endFill();				
-			
-			day_txt.autoSize 		= TextFieldAutoSize.CENTER;
-			day_txt.embedFonts      = bitmapFonts?true:embedFonts;
-			//day_txt.blendMode      	=	BlendMode.LAYER;
-			//day_txt.antiAliasType	= AntiAliasType.ADVANCED;
-			day_txt.multiline		= false;
-			day_txt.selectable 		= false;
-			//day_txt.width 			= cellWidth;
+			dateCell.day_txt.embedFonts     = bitmapFonts?true:embedFonts;
 			
 			var format:TextFormat 			
 			
 			if (bitmapFonts)
 			{
-				format					= new BitmapFont().txt.defaultTextFormat;
+				format			= new BitmapFont().txt.defaultTextFormat;
 			}else
 			{
-				format					=	new TextFormat();
-				format.font 				=	_font;
-				format.bold 				=	false;
-				format.size 				=	DayFontSize;
+				format			=	new TextFormat();
+				format.font 	=	_font;
+				format.bold 	=	false;
+				format.size 	=	dayFontSize;
 			}
 			
-			format.color 				=	entryTextColor;
-			format.align				=	"center";
+			format.color 		=	entryTextColor;
+			format.align		=	"center";
 			
-			day_txt.defaultTextFormat 	=	format;
+			dateCell.day_txt.defaultTextFormat 	=	format;
 			
 			if(isEntry){
-				day_txt.text 				=	String(day);
-				hit.name 	 				= 	"hit";
-				hit.buttonMode 				=	true;
+				dateCell.day_txt.text 		=	String(day);
+				dateCell.hit.name 	 		= 	"hit";
+				dateCell.hit.buttonMode 	=	true;
 			}
 			
-			day_txt.x 				= (cellWidth - day_txt.width) / 2;
-			day_txt.y 				= (cellHeight - day_txt.height) / 2;
+			dateCell.day_txt.x 				= (cellWidth - dateCell.day_txt.width) / 2;
+			dateCell.day_txt.y 				= (cellHeight - dateCell.day_txt.height) / 2;
 			
-			day_bg.addChild(day_txt);
-			day_bg.addChild(hit);
-			
-			return (day_bg);
+			return (dateCell);
 		}	
 		/*
 		 *	CELL COLOR CHANGER 
