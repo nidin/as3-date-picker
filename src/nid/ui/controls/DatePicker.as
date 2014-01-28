@@ -451,7 +451,7 @@
 						}
 						oldHit			=	e.target.parent.serial;
 						//selectedDate	=	new Date(e.target.parent.date.getDate()+ "/" + (currentmonth + 1) + "/" + currentyear;
-						var d:Date 		= 	new Date();
+						d	= 	new Date();
 						_selectedDate	=	new Date(currentyear, currentmonth, e.target.parent.date.getDate(), d.hours, d.minutes, d.seconds, d.milliseconds);
 						
 						setDateField();
