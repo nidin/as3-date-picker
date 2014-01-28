@@ -22,6 +22,7 @@
 	import nid.ui.controls.datePicker.CalendarSkin;
 	import nid.ui.controls.datePicker.DateField;
 	import nid.ui.controls.datePicker.iconSprite;
+	import nid.ui.controls.datePicker.MonthPicker;
 	/**
 	 * ...
 	 * @author Nidin Vinayak
@@ -360,7 +361,11 @@
 			if (_alwaysShowCalendar) return;
 			if (e.currentTarget == stage) {
 				//trace(e.target.name);
-				if(e.target.name == "hit" || e.target.name == "NextButton" || e.target.name == "PrevButton" || e.target == calendarIcon ){					
+				if (e.target.name == "hit" || 
+					e.target.name == "currentDateLabel" || 
+					e.target.name == "NextButton" || 
+					e.target.name == "PrevButton" || 
+					e.target == calendarIcon ){					
 					//trace(e.currentTarget);				
 					return;
 				}
@@ -412,7 +417,7 @@
 			if(!isHidden){
 			if(e.target.name == "hit"){
 				if(!e.target.parent.hitted)
-				changeColor(e.target.parent,e.target.parent.id);
+				changeColor(e.target.parent,e.target.parent.color);
 			}else{
 				return;
 			}
@@ -420,23 +425,41 @@
 		}
 		public function onClick(e:Event):void {
 			if(!isHidden){
-				if(e.target.name == "hit"){
-					e.target.parent.hitted		=	true;
-					isHitted.status 			=	true;
-					isHitted.num				=	e.target.parent.serial;
-					if(oldHit){
-						cellArray[oldHit].hitted 	= 	false;
-						changeColor(cellArray[oldHit],cellArray[oldHit].id);
-					}
-					oldHit			=	e.target.parent.serial;
-					//selectedDate	=	new Date(e.target.parent.date.getDate()+ "/" + (currentmonth + 1) + "/" + currentyear;
-					var d:Date 		= 	new Date();
-					_selectedDate	=	new Date(currentyear, currentmonth, e.target.parent.date.getDate(), d.hours, d.minutes, d.seconds, d.milliseconds);
+				if (e.target.name == "hit") {
 					
-					setDateField();
-					showHideCalendar(e);
-					if(!e.target.parent.isToday){ changeColor(e.target.parent,mouseOverCellColor); }
-					dispatchEvent(new CalendarEvent(CalendarEvent.CHANGE, _selectedDate));
+					if (e.target.parent.parent.parent is MonthPicker) {
+						pickState = DAY;
+						weekname.visible = true;
+						changeColor(e.target.parent, e.target.parent.color);
+						currentmonth = e.target.parent.serial;
+						var d:Date 		= 	new Date();
+						_selectedDate	=	new Date(currentyear, currentmonth, _selectedDate.date, d.hours, d.minutes, d.seconds, d.milliseconds);
+						
+						if (calendar.contains(monthPicker)) {
+							calendar.removeChild(monthPicker);
+						}
+						constructCalendar();
+						setDateField();
+						dispatchEvent(new CalendarEvent(CalendarEvent.CHANGE, _selectedDate));
+					}else {
+						e.target.parent.hitted		=	true;
+						isHitted.status 			=	true;
+						isHitted.num				=	e.target.parent.serial;
+						if(oldHit){
+							cellArray[oldHit].hitted 	= 	false;
+							changeColor(cellArray[oldHit],cellArray[oldHit].color);
+						}
+						oldHit			=	e.target.parent.serial;
+						//selectedDate	=	new Date(e.target.parent.date.getDate()+ "/" + (currentmonth + 1) + "/" + currentyear;
+						var d:Date 		= 	new Date();
+						_selectedDate	=	new Date(currentyear, currentmonth, e.target.parent.date.getDate(), d.hours, d.minutes, d.seconds, d.milliseconds);
+						
+						setDateField();
+						showHideCalendar(e);
+						if(!e.target.parent.isToday){ changeColor(e.target.parent,mouseOverCellColor); }
+						dispatchEvent(new CalendarEvent(CalendarEvent.CHANGE, _selectedDate));
+					}
+					
 				}else{
 					return;
 				}

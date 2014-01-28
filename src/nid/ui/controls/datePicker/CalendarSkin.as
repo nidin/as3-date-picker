@@ -2,6 +2,7 @@
 {
 
 	import flash.display.Bitmap;
+	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.display.Sprite;
 	import flash.display.Sprite;
@@ -159,6 +160,7 @@
 				format.align		= 	"center";
 				
 			currentDateLabel.defaultTextFormat	=	format;
+			currentDateLabel.addEventListener(MouseEvent.CLICK, handleMonthAndYear);
 			currentDateLabel.text				=	"";
 			
 			calendar.addChild(currentDateLabel);
@@ -204,6 +206,62 @@
 			currentDateLabel.text	=	_months[currentmonth]+" - "+currentyear;
 			
 			constructCalendar();
+			
+		}
+		private function handleMonthAndYear(e:MouseEvent):void 
+		{
+			e.stopPropagation();
+			
+			switch(pickState) {
+				case DAY:
+					currentDateLabel.text = currentyear.toString();
+					pickState = MONTH;
+					weekname.visible = false;
+					removeEntry();
+					if (monthPicker==null) {
+						monthPicker = new MonthPicker(enabledCellColor, _calendarWidth - 10 - cellGap, _calendarHeight - yOffset - 8);
+						monthPicker.addEventListener(Event.CHANGE, setMonth);
+						monthPicker.x = xOffset;
+						monthPicker.y = yOffset;
+						monthPicker.months = _months;
+					}
+					calendar.addChild(monthPicker);
+					break;
+					
+				case MONTH:
+					return;
+					//Not completed
+					if (calendar.contains(monthPicker)) {
+						calendar.removeChild(monthPicker);
+					}
+					pickState = YEAR;
+					weekname.visible = false;
+					currentDateLabel.text = currentyear.toString();
+					if (yearPicker==null) {
+						yearPicker = new YearPicker(_calendarWidth - 10, _calendarHeight - yOffset - 5);
+						yearPicker.addEventListener(Event.CHANGE, setYear);
+						yearPicker.x = xOffset;
+						yearPicker.y = yOffset;
+					}
+					calendar.addChild(yearPicker);
+					break;
+					
+				case YEAR:
+					//Not implemented
+					break;
+			}
+		}
+		
+		protected function setDay():void {
+			
+		}
+		private function setMonth(e:Event):void 
+		{
+			
+		}
+		
+		private function setYear(e:Event):void 
+		{
 			
 		}
 		
@@ -263,26 +321,31 @@
 			calendar = null;
 		}
 		public function clickHandler(e:MouseEvent):void{
-			switch (e.target.name) {
-				case "PrevButton" :
-					{
-						changeMonth(-1);
-						break;
-					}
-				case "NextButton" :
-					{
-						changeMonth(1);
-						break;
-					}
+			
+			var factor:int = e.target.name == "PrevButton"? -1:1;
+			
+			switch(pickState) {
+				case DAY:
+					changeMonth(factor);
+					break;
+				case MONTH:
+					changeYear(factor);
+					currentDateLabel.text = currentyear.toString();
+					break;
+				case YEAR:
+					changeYearGroup(factor);
+					currentDateLabel.text = currentyear.toString();
+					break;
 			}
+			
 			return;
 			
 		}
 		/*
 		 * 	MONTH CHANGER FUNCTION
 		 */
-		public function changeMonth(monthNum:Number):void {
-			if (monthNum!=1) {
+		public function changeMonth(factor:int):void {
+			if (factor!=1) {
 				if (currentmonth > 0) {
 					currentmonth = (currentmonth - 1);
 				} else {
@@ -299,15 +362,20 @@
 			return;
 		}
 		/*
-		 * 	YEAR CHANGER FUNCTION
+		 * 	CHANGE YEAR
 		 */
-		public function changeYear(yearNum:Number):void {
-			currentyear = currentyear + yearNum;
-			if (yearNum != 1) { currentmonth = 11; } else { currentmonth = 0; }
+		public function changeYear(factor:int):void {
+			currentyear = currentyear + factor;
+			if (factor != 1) { currentmonth = 11; } else { currentmonth = 0; }
 			_daysInMonth[1] = isLeapYear(currentyear)?29:28;
 			return;
 		}
-		
+		/**
+		 * CHANGE YEAR GROUP
+		 */
+		private function changeYearGroup(factor:int):void {
+			
+		}
 		private function isLeapYear(currentyear:Number):Boolean 
 		{
 			var yearDev:Number = currentyear / 4;
@@ -342,8 +410,7 @@
 			if (endDay > 0) {
 				var inc_1:Number = 0;
 				while (inc_1 < endDay) {
-					dateBox 		= 	createDataCell(disabledCellColor,inc_1,false);
-					dateBox.id 		= 	disabledCellColor;
+					dateBox 		= 	createDateCell(disabledCellColor,inc_1,false);
 					dateBox.isToday	=	false;
 					dateBox.name	=	"D"+inc_1;
 					dateBox.x		=	xpos + cellGap;
@@ -374,8 +441,7 @@
 			while (restNum < 42) {
 				if (entryNum <= _daysInMonth[currentmonth]) {
 					if (locDate.getDate()== entryNum && isToday == true) {
-						dateBox 		= 	createDataCell(TodayCellColor,entryNum,true);
-						dateBox.id 		= 	TodayCellColor;
+						dateBox 		= 	createDateCell(TodayCellColor,entryNum,true);
 						dateBox.hitted	=	false;
 						dateBox.serial	=	restNum;
 						dateBox.date	=	new Date(currentyear,currentmonth,entryNum);
@@ -383,13 +449,12 @@
 						todayDateBox  	= dateBox;
 					}else{
 						/*if(dateBox.hitted){
-							dateBox 		= 	createDataCell(mouseOverCellColor,entryNum,true);
+							dateBox 		= 	createDateCell(mouseOverCellColor,entryNum,true);
 							dateBox.hitted	=	true;
 						}else{*/
-							dateBox 		= 	createDataCell(enabledCellColor,entryNum,true);
+							dateBox 		= 	createDateCell(enabledCellColor,entryNum,true);
 							dateBox.hitted	=	false;
-						//}						
-						dateBox.id 		= 	enabledCellColor;
+						//}
 						
 						dateBox.serial	=	restNum;
 						dateBox.date	=	new Date(currentyear,currentmonth,entryNum);
@@ -399,8 +464,7 @@
 			/*
 			 *	CONSTRUCT SECOND SET OF DESABLED DATE CELLS 
 			 */			
-					dateBox 		= 	createDataCell(disabledCellColor,entryNum,false);
-					dateBox.id 		= 	disabledCellColor;
+					dateBox 		= 	createDateCell(disabledCellColor,entryNum,false);
 					dateBox.isToday	=	false;
 				}
 				dateBox.name	=	"D"+(restNum + inc_1);
@@ -422,16 +486,18 @@
 				entryNum++;
 			}
 		}
-		public function removeEntry():void{
-			for(var i:int=0;i<42;i++){
-				if (calendar.contains(cellArray[i])) calendar.removeChild(cellArray[i]);
+		public function removeEntry():void {
+			if (cellArray && cellArray.length > 0) { 
+				for(var i:int=0;i<42;i++){
+					if (calendar.contains(cellArray[i])) calendar.removeChild(cellArray[i]);
+				}
 			}
 			cellArray = new Vector.<DateCell>();
 		}
 		/*
 		 *	DATE CELL CONSTRUCTOR FUNCTION [RETURNS MOVIECLIP] 
 		 */
-		public function createDataCell(cellColor:int, day:int, isEntry:Boolean):DateCell {
+		public function createDateCell(cellColor:int, day:int, isEntry:Boolean):DateCell {
 			
 			var dateCell:DateCell	= 	new DateCell(cellColor, cellWidth, cellHeight);
 			
@@ -470,10 +536,7 @@
 		 *	CELL COLOR CHANGER 
 		 */
 		public function changeColor(mc:Sprite,color:uint):void{			
-			mc.graphics.clear();
-			mc.graphics.beginFill(color);
-			mc.graphics.drawRect(0, 0, cellWidth, cellHeight);
-			mc.graphics.endFill();
+			DateCell(mc).changeColor(color);
 		}
 		/*
 		 * BUTTON GRAPHICS CONSTRUCTOR

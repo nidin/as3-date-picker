@@ -15,6 +15,10 @@
 		[Embed(source = "./asset/icon.png")]
 		protected var default_icon:Class;
 		
+		protected const DAY:String 		= "DAY";
+		protected const MONTH:String 	= "MONTH";
+		protected const YEAR:String 	= "YEAR";
+		
 		public var isInited				:Boolean;
 		public var isHidden				:Boolean;
 		public var calendarIcon			:iconSprite;		
@@ -57,6 +61,9 @@
 		protected var _startDay			:String = "sunday";
 		protected var _startID			:int = 1;
 		protected var todayDateBox		:DateCell;
+		protected var pickState			:String = DAY;
+		protected var monthPicker		:MonthPicker;
+		protected var yearPicker		:YearPicker;
 		
 		/*
 		 * COLOR VARIABLES
