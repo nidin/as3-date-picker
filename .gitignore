@@ -4,6 +4,9 @@
 
 /obj
 /demo/demo.zip
+/demo/obj
+/asi
+*.lxml
 
 #################
 ## Eclipse

@@ -334,19 +334,20 @@
 		 * 
 		 */
         private function addContextMenuItems():void {
-			
-			_contextMenu = new ContextMenu();
-            _contextMenu.hideBuiltInItems();
-            var menu1:ContextMenuItem;
-			var menu2:ContextMenuItem;
-            menu1 = null;
-			menu1 = new ContextMenuItem("An iGi Lab Production");
-            menu2 = new ContextMenuItem("Follow us");			
-            menu1.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT, navigateToSite);
-			menu2.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT, navigateToSite);
-            _contextMenu.customItems.push(menu1);
-			_contextMenu.customItems.push(menu2);
-            this.contextMenu = _contextMenu;
+			if(Capabilities.playerType == "ActiveX" || Capabilities.playerType == "PlugIn"){
+				_contextMenu = new ContextMenu();
+				_contextMenu.hideBuiltInItems();
+				var menu1:ContextMenuItem;
+				var menu2:ContextMenuItem;
+				menu1 = null;
+				menu1 = new ContextMenuItem("An iGi Lab Production");
+				menu2 = new ContextMenuItem("Follow us");			
+				menu1.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT, navigateToSite);
+				menu2.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT, navigateToSite);
+				_contextMenu.customItems.push(menu1);
+				_contextMenu.customItems.push(menu2);
+				this.contextMenu = _contextMenu;
+			}
             return;
         }	
         private function navigateToSite(e:ContextMenuEvent):void

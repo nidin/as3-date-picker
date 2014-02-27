@@ -4,11 +4,11 @@
   <output>
     <movie outputType="Application" />
     <movie input="" />
-    <movie path="bin\AS3DateChooserv4.swf" />
+    <movie path="bin\AS3-DatePicker-v4.8.1.swf" />
     <movie fps="30" />
     <movie width="600" />
     <movie height="600" />
-    <movie version="10" />
+    <movie version="11" />
     <movie minorVersion="1" />
     <movie platform="Flash Player" />
     <movie background="#FFFFFF" />
