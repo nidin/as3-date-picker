@@ -1,0 +1,900 @@
+<DOMDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" width="100" height="20" currentTimeline="1" xflVersion="2.0" creatorInfo="Adobe Flash Professional CS6" platform="Windows" versionInfo="Saved by Adobe Flash Windows 12.0 build 481" majorVersion="12" buildNumber="481" rulerVisible="true" viewAngle3D="10.8137112665991" nextSceneIdentifier="2" playOptionsPlayLoop="false" playOptionsPlayPages="false" playOptionsPlayFrameActions="false">
+     <media>
+          <DOMCompiledClipItem name="DatePicker" itemID="5235a1e6-00000032" linkageExportForAS="true" linkageClassName="nid.ui.controls.DatePicker" sourceExternalFilepath="./LIBRARY/DatePicker" sourceLastImported="1379246535" tooltip="Date Picker" customIconID="0" actionscriptClass="nid.ui.controls.DatePicker" livePreviewScmHRef="36trut61ib.swf" livePreviewScmSourceFilename="C:\Users\nidin\AppData\Local\Adobe\Flash CS6\en_US\Configuration\TMP36trut61ib..swf" persistLivePreview11="true" livePreview11ScmHRef="36trut61ib1.swf" livePreview11ScmSourceFilename="C:\Users\nidin\AppData\Local\Adobe\Flash CS6\en_US\Configuration\TMP36trut61ib..swf" editFrameIndex="1" requiredMinimumPlayerVersion="0" requiredMinimumASVersion="0" parametersAreLocked="true" swcPath="DatePicker.xml" rootSymbolLinkageID="nid.ui.controls.DatePicker" movieRectRight="2000" movieRectBottom="400" playerVersion="9" actionscriptVersion="3" hashKey="EqoIhHy1CZqPdU9lphmjB.">
+               <parametersAsXML><![CDATA[   <property id="calendarPlacement">
+      <Inspectable name="calendarPlacement" variable="calendarPlacement" category="" verbose="0" defaultValue="right" enumeration="left,right,top,bottom,top-left,top-right,bottom-left,bottom-right,manual" type="List"/>
+   </property>
+   <property id="dateFormat">
+      <Inspectable name="dateFormat" variable="dateFormat" category="" verbose="0" defaultValue="DD/MM/YYYY" enumeration="D/M/YY,M/D/YY,YY/M/D,YY/D/M,DD/MM/YYYY,MM/DD/YYYY,YYYY/MM/DD,YYYY/DD/MM" type="List"/>
+   </property>
+   <property id="enabled">
+      <Inspectable name="enabled" variable="enabled" category="" verbose="1" defaultValue="true" type="Boolean"/>
+   </property>
+   <property id="iconPlacement">
+      <Inspectable name="iconPlacement" variable="iconPlacement" category="" verbose="0" defaultValue="right" enumeration="left,right" type="List"/>
+   </property>
+   <property id="prompt">
+      <Inspectable name="prompt" variable="prompt" category="" verbose="0" defaultValue="Select Date" type="String"/>
+   </property>
+   <property id="visible">
+      <Inspectable name="visible" variable="visible" category="" verbose="1" defaultValue="true" type="Boolean"/>
+   </property>
+]]></parametersAsXML>
+               <classProperties><![CDATA[<component id="nid/ui/controls/DatePicker" class="nid.ui.controls.DatePicker" livePreviewClass="nid.ui.controls.DatePicker" modified="1379246535762">
+<movieBounds xmin="0" xmax="0" ymin="0" ymax="0" />
+<classDefs>
+	<classDef id="mx.core.IFlexAsset"/>
+	<classDef id="caurina.transitions.Tweener"/>
+	<classDef id="caurina.transitions.TweenListObj"/>
+	<classDef id="mx.core.IRepeaterClient"/>
+	<classDef id="fl.controls.LabelButton"/>
+	<classDef id="nid.ui.controls.DatePicker"/>
+	<classDef id="mx.core.FlexBitmap"/>
+	<classDef id="fl.controls.Button"/>
+	<classDef id="nid.events.CalendarEvent"/>
+	<classDef id="mx.utils.NameUtil"/>
+	<classDef id="fl.events.ComponentEvent"/>
+	<classDef id="nid.ui.controls.datePicker.DateField"/>
+	<classDef id="nid.ui.controls.datePicker.UIProperties"/>
+	<classDef id="caurina.transitions.AuxFunctions"/>
+	<classDef id="caurina.transitions.SpecialProperty"/>
+	<classDef id="mx.core.IAssetLayoutFeatures"/>
+	<classDef id="caurina.transitions.SpecialPropertyModifier"/>
+	<classDef id="fl.controls.BaseButton"/>
+	<classDef id="fl.core.UIComponent"/>
+	<classDef id="BitmapFont"/>
+	<classDef id="fl.livepreview.LivePreviewParent"/>
+	<classDef id="fl.managers.IFocusManagerComponent"/>
+	<classDef id="fl.managers.IFocusManagerGroup"/>
+	<classDef id="mx.core.IFlexDisplayObject"/>
+	<classDef id="fl.managers.FocusManager"/>
+	<classDef id="fl.managers.IFocusManager"/>
+	<classDef id="caurina.transitions.SpecialPropertySplitter"/>
+	<classDef id="fl.core.InvalidationType"/>
+	<classDef id="nid.ui.controls.datePicker.CalendarSkin"/>
+	<classDef id="caurina.transitions.Equations"/>
+	<classDef id="mx.core.BitmapAsset"/>
+	<classDef id="fl.controls.ButtonLabelPlacement"/>
+	<classDef id="nid.ui.controls.datePicker.UIProperties_default_icon"/>
+	<classDef id="nid.ui.controls.datePicker.iconSprite"/>
+	<classDef id="fl.managers.StyleManager"/>
+	<classDef id="mx.core.ILayoutDirectionElement"/>
+	<classDef id="caurina.transitions.PropertyInfoObj"/>
+</classDefs>
+<class id="nid.ui.controls.DatePicker" >
+	<__go_to_ctor_definition_help file="D:\Git-Repo\as3-date-picker\src\nid\ui\controls\DatePicker.as" pos="2361" />
+	<__go_to_ctor_definition_help file="D:\Git-Repo\as3-date-picker\src\nid\ui\controls\datePicker\CalendarSkin.as" pos="3059" />
+	<__go_to_ctor_definition_help file="D:\Git-Repo\as3-date-picker\src\nid\ui\controls\datePicker\UIProperties.as" pos="3468" />
+	<Style name="disabledTextFormat" type="flash.text.TextFormat" />
+	<Style name="textFormat" type="flash.text.TextFormat" />
+	<Style name="focusRectPadding" type="Number" format="Length" />
+	<Style name="focusRectSkin" type="Class" />
+	<Event name="hide" type="fl.events.ComponentEvent" />
+	<Event name="show" type="fl.events.ComponentEvent" />
+	<Event name="resize" type="fl.events.ComponentEvent" />
+	<Event name="move" type="fl.events.ComponentEvent" />
+	<__go_to_ctor_definition_help file="C:\Program Files (x86)\Adobe\Adobe Flash CS6\Common\Configuration\Component Source\ActionScript 3.0\User Interface\fl\core\UIComponent.as" pos="14965" />
+	<method id="selectedDate" returnType="Date" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="prompt" returnType="String" isProperty="true" permissions="readwrite">
+		<Inspectable defaultValue="Select Date" />
+	</method>
+	<method id="dateFormat" returnType="String" isProperty="true" permissions="readwrite">
+		<Inspectable enumeration="D/M/YY,M/D/YY,YY/M/D,YY/D/M,DD/MM/YYYY,MM/DD/YYYY,YYYY/MM/DD,YYYY/DD/MM" defaultValue="DD/MM/YYYY" name="dateFormat" />
+	</method>
+	<method id="iconPlacement" returnType="String" isProperty="true" permissions="readwrite">
+		<Inspectable enumeration="left,right" defaultValue="right" name="iconPlacement" />
+	</method>
+	<method id="calendarPlacement" returnType="String" isProperty="true" permissions="readwrite">
+		<Inspectable enumeration="left,right,top,bottom,top-left,top-right,bottom-left,bottom-right,manual" defaultValue="right" name="calendarPlacement" />
+	</method>
+	<method id="font" returnType="String" isProperty="true" permissions="writeonly">
+	</method>
+	<method id="months" returnType="Array" isProperty="true" permissions="writeonly">
+	</method>
+	<method id="days" returnType="Array" isProperty="true" permissions="writeonly">
+	</method>
+	<method id="calendarPoint" returnType="Point" isProperty="true" permissions="writeonly">
+	</method>
+	<method id="alwaysShowCalendar" returnType="Boolean" isProperty="true" permissions="writeonly">
+	</method>
+	<method id="WeekStart" returnType="String" isProperty="true" permissions="writeonly">
+	</method>
+	<method id="icon" returnType="Object" isProperty="true" permissions="writeonly">
+	</method>
+	<method id="setBackgroundColor" returnType="Array" isProperty="true" permissions="writeonly">
+	</method>
+	<method id="setBackgroundGradientType" returnType="String" isProperty="true" permissions="writeonly">
+	</method>
+	<method id="setBackgroundStrokeColor" returnType="int" isProperty="true" permissions="writeonly">
+	</method>
+	<method id="setLabelColor" returnType="int" isProperty="true" permissions="writeonly">
+	</method>
+	<method id="setButtonColor" returnType="int" isProperty="true" permissions="writeonly">
+	</method>
+	<method id="setDisabledCellColor" returnType="int" isProperty="true" permissions="writeonly">
+	</method>
+	<method id="setEnabledCellColor" returnType="int" isProperty="true" permissions="writeonly">
+	</method>
+	<method id="setTodayCellColor" returnType="int" isProperty="true" permissions="writeonly">
+	</method>
+	<method id="setMouseOverColor" returnType="int" isProperty="true" permissions="writeonly">
+	</method>
+	<method id="setDateColor" returnType="int" isProperty="true" permissions="writeonly">
+	</method>
+	<method id="setCalendarWidth" returnType="Number" isProperty="true" permissions="writeonly">
+	</method>
+	<method id="setCalendarHeight" returnType="Number" isProperty="true" permissions="writeonly">
+	</method>
+	<method id="isInited" returnType="Boolean" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="isHidden" returnType="Boolean" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="calendarIcon" returnType="iconSprite" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="dateField" returnType="DateField" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="myMenu" returnType="ContextMenu" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="oldHit" returnType="notypefound" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="_font" returnType="String" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="embedFonts" returnType="Boolean" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="bitmapFonts" returnType="Boolean" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="letterSpacing" returnType="Number" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="MonthAndYearFontSize" returnType="Number" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="WeekNameFontSize" returnType="Number" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="DayFontSize" returnType="Number" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="hideOnFocusOut" returnType="Boolean" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="_alwaysShowCalendar" returnType="Boolean" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="componentInspectorSetting" returnType="Boolean" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="enabled" returnType="Boolean" isProperty="true" permissions="readwrite">
+		<Inspectable defaultValue="true" verbose="1" />
+	</method>
+	<method id="width" returnType="Number" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="height" returnType="Number" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="x" returnType="Number" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="y" returnType="Number" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="scaleX" returnType="Number" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="scaleY" returnType="Number" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="visible" returnType="Boolean" isProperty="true" permissions="readwrite">
+		<Inspectable defaultValue="true" verbose="1" />
+	</method>
+	<method id="focusEnabled" returnType="Boolean" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="mouseFocusEnabled" returnType="Boolean" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="focusManager" returnType="IFocusManager" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="version" returnType="String" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="focusTarget" returnType="IFocusManagerComponent" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="showHideCalendar" returnType="void" isProperty="false">
+	</method>
+	<method id="onOver" returnType="void" isProperty="false">
+	</method>
+	<method id="onOut" returnType="void" isProperty="false">
+	</method>
+	<method id="onClick" returnType="void" isProperty="false">
+	</method>
+	<method id="getDateString" returnType="String" isProperty="false">
+	</method>
+	<method id="DatePicker" isConstructor="true" isProperty="false">
+	</method>
+	<method id="fontSize" returnType="void" isProperty="false">
+	</method>
+	<method id="setGlow" returnType="void" isProperty="false">
+	</method>
+	<method id="flush" returnType="void" isProperty="false">
+	</method>
+	<method id="clickHandler" returnType="void" isProperty="false">
+	</method>
+	<method id="changeMonth" returnType="void" isProperty="false">
+	</method>
+	<method id="changeYear" returnType="void" isProperty="false">
+	</method>
+	<method id="ConstructCalendar" returnType="void" isProperty="false">
+	</method>
+	<method id="removeEntry" returnType="void" isProperty="false">
+	</method>
+	<method id="Construct_Date_Element" returnType="MovieClip" isProperty="false">
+	</method>
+	<method id="changeColor" returnType="void" isProperty="false">
+	</method>
+	<method id="CalendarSkin" isConstructor="true" isProperty="false">
+	</method>
+	<method id="UIProperties" isConstructor="true" isProperty="false">
+	</method>
+	<method id="setSize" returnType="void" isProperty="false">
+	</method>
+	<method id="setStyle" returnType="void" isProperty="false">
+	</method>
+	<method id="clearStyle" returnType="void" isProperty="false">
+	</method>
+	<method id="getStyle" returnType="Object" isProperty="false">
+	</method>
+	<method id="move" returnType="void" isProperty="false">
+	</method>
+	<method id="validateNow" returnType="void" isProperty="false">
+	</method>
+	<method id="invalidate" returnType="void" isProperty="false">
+	</method>
+	<method id="setSharedStyle" returnType="void" isProperty="false">
+	</method>
+	<method id="drawFocus" returnType="void" isProperty="false">
+	</method>
+	<method id="setFocus" returnType="void" isProperty="false">
+	</method>
+	<method id="getFocus" returnType="InteractiveObject" isProperty="false">
+	</method>
+	<method id="drawNow" returnType="void" isProperty="false">
+	</method>
+	<method id="UIComponent" isConstructor="true" isProperty="false">
+	</method>
+</class><livePreview class="nid.ui.controls.DatePicker">
+<movieBounds xmin="0" xmax="2000" ymin="0" ymax="400" />
+<classDefs>
+	<classDef id="mx.core.IFlexAsset"/>
+	<classDef id="mx.core.ILayoutDirectionElement"/>
+	<classDef id="mx.core.IAssetLayoutFeatures"/>
+	<classDef id="fl.managers.IFocusManager"/>
+	<classDef id="fl.managers.IFocusManagerComponent"/>
+	<classDef id="fl.core.InvalidationType"/>
+	<classDef id="mx.utils.NameUtil"/>
+	<classDef id="fl.managers.StyleManager"/>
+	<classDef id="caurina.transitions.Tweener"/>
+	<classDef id="caurina.transitions.TweenListObj"/>
+	<classDef id="caurina.transitions.SpecialPropertySplitter"/>
+	<classDef id="caurina.transitions.SpecialPropertyModifier"/>
+	<classDef id="caurina.transitions.SpecialProperty"/>
+	<classDef id="fl.managers.IFocusManagerGroup"/>
+	<classDef id="mx.core.IRepeaterClient"/>
+	<classDef id="caurina.transitions.Equations"/>
+	<classDef id="caurina.transitions.PropertyInfoObj"/>
+	<classDef id="caurina.transitions.AuxFunctions"/>
+	<classDef id="fl.controls.ButtonLabelPlacement"/>
+	<classDef id="mx.core.IFlexDisplayObject"/>
+	<classDef id="nid.events.CalendarEvent"/>
+	<classDef id="fl.events.ComponentEvent"/>
+	<classDef id="fl.managers.FocusManager"/>
+	<classDef id="mx.core.FlexBitmap"/>
+	<classDef id="mx.core.BitmapAsset"/>
+	<classDef id="fl.core.UIComponent"/>
+	<classDef id="nid.ui.controls.datePicker.DateField"/>
+	<classDef id="nid.ui.controls.datePicker.iconSprite"/>
+	<classDef id="nid.ui.controls.datePicker.UIProperties_default_icon"/>
+	<classDef id="fl.livepreview.LivePreviewParent"/>
+	<classDef id="BitmapFont"/>
+	<classDef id="nid.ui.controls.datePicker.UIProperties"/>
+	<classDef id="fl.controls.BaseButton"/>
+	<classDef id="nid.ui.controls.datePicker.CalendarSkin"/>
+	<classDef id="fl.controls.LabelButton"/>
+	<classDef id="nid.ui.controls.DatePicker"/>
+	<classDef id="fl.controls.Button"/>
+</classDefs>
+<class id="nid.ui.controls.DatePicker" >
+	<method id="selectedDate" returnType="Date" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="prompt" returnType="String" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="dateFormat" returnType="String" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="iconPlacement" returnType="String" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="calendarPlacement" returnType="String" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="font" returnType="String" isProperty="true" permissions="writeonly">
+	</method>
+	<method id="months" returnType="Array" isProperty="true" permissions="writeonly">
+	</method>
+	<method id="days" returnType="Array" isProperty="true" permissions="writeonly">
+	</method>
+	<method id="calendarPoint" returnType="Point" isProperty="true" permissions="writeonly">
+	</method>
+	<method id="alwaysShowCalendar" returnType="Boolean" isProperty="true" permissions="writeonly">
+	</method>
+	<method id="WeekStart" returnType="String" isProperty="true" permissions="writeonly">
+	</method>
+	<method id="icon" returnType="Object" isProperty="true" permissions="writeonly">
+	</method>
+	<method id="setBackgroundColor" returnType="Array" isProperty="true" permissions="writeonly">
+	</method>
+	<method id="setBackgroundGradientType" returnType="String" isProperty="true" permissions="writeonly">
+	</method>
+	<method id="setBackgroundStrokeColor" returnType="int" isProperty="true" permissions="writeonly">
+	</method>
+	<method id="setLabelColor" returnType="int" isProperty="true" permissions="writeonly">
+	</method>
+	<method id="setButtonColor" returnType="int" isProperty="true" permissions="writeonly">
+	</method>
+	<method id="setDisabledCellColor" returnType="int" isProperty="true" permissions="writeonly">
+	</method>
+	<method id="setEnabledCellColor" returnType="int" isProperty="true" permissions="writeonly">
+	</method>
+	<method id="setTodayCellColor" returnType="int" isProperty="true" permissions="writeonly">
+	</method>
+	<method id="setMouseOverColor" returnType="int" isProperty="true" permissions="writeonly">
+	</method>
+	<method id="setDateColor" returnType="int" isProperty="true" permissions="writeonly">
+	</method>
+	<method id="setCalendarWidth" returnType="Number" isProperty="true" permissions="writeonly">
+	</method>
+	<method id="setCalendarHeight" returnType="Number" isProperty="true" permissions="writeonly">
+	</method>
+	<method id="isInited" returnType="Boolean" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="isHidden" returnType="Boolean" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="calendarIcon" returnType="iconSprite" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="dateField" returnType="DateField" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="myMenu" returnType="ContextMenu" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="oldHit" returnType="notypefound" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="_font" returnType="String" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="embedFonts" returnType="Boolean" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="bitmapFonts" returnType="Boolean" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="letterSpacing" returnType="Number" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="MonthAndYearFontSize" returnType="Number" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="WeekNameFontSize" returnType="Number" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="DayFontSize" returnType="Number" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="hideOnFocusOut" returnType="Boolean" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="_alwaysShowCalendar" returnType="Boolean" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="componentInspectorSetting" returnType="Boolean" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="enabled" returnType="Boolean" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="width" returnType="Number" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="height" returnType="Number" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="x" returnType="Number" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="y" returnType="Number" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="scaleX" returnType="Number" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="scaleY" returnType="Number" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="visible" returnType="Boolean" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="focusEnabled" returnType="Boolean" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="mouseFocusEnabled" returnType="Boolean" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="focusManager" returnType="IFocusManager" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="version" returnType="String" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="focusTarget" returnType="IFocusManagerComponent" isProperty="true" permissions="readwrite">
+	</method>
+	<method id="showHideCalendar" returnType="void" isProperty="false">
+	</method>
+	<method id="onOver" returnType="void" isProperty="false">
+	</method>
+	<method id="onOut" returnType="void" isProperty="false">
+	</method>
+	<method id="onClick" returnType="void" isProperty="false">
+	</method>
+	<method id="getDateString" returnType="String" isProperty="false">
+	</method>
+	<method id="DatePicker" isConstructor="true" isProperty="false">
+	</method>
+	<method id="fontSize" returnType="void" isProperty="false">
+	</method>
+	<method id="setGlow" returnType="void" isProperty="false">
+	</method>
+	<method id="flush" returnType="void" isProperty="false">
+	</method>
+	<method id="clickHandler" returnType="void" isProperty="false">
+	</method>
+	<method id="changeMonth" returnType="void" isProperty="false">
+	</method>
+	<method id="changeYear" returnType="void" isProperty="false">
+	</method>
+	<method id="ConstructCalendar" returnType="void" isProperty="false">
+	</method>
+	<method id="removeEntry" returnType="void" isProperty="false">
+	</method>
+	<method id="Construct_Date_Element" returnType="MovieClip" isProperty="false">
+	</method>
+	<method id="changeColor" returnType="void" isProperty="false">
+	</method>
+	<method id="CalendarSkin" isConstructor="true" isProperty="false">
+	</method>
+	<method id="UIProperties" isConstructor="true" isProperty="false">
+	</method>
+	<method id="setSize" returnType="void" isProperty="false">
+	</method>
+	<method id="setStyle" returnType="void" isProperty="false">
+	</method>
+	<method id="clearStyle" returnType="void" isProperty="false">
+	</method>
+	<method id="getStyle" returnType="Object" isProperty="false">
+	</method>
+	<method id="move" returnType="void" isProperty="false">
+	</method>
+	<method id="validateNow" returnType="void" isProperty="false">
+	</method>
+	<method id="invalidate" returnType="void" isProperty="false">
+	</method>
+	<method id="setSharedStyle" returnType="void" isProperty="false">
+	</method>
+	<method id="drawFocus" returnType="void" isProperty="false">
+	</method>
+	<method id="setFocus" returnType="void" isProperty="false">
+	</method>
+	<method id="getFocus" returnType="InteractiveObject" isProperty="false">
+	</method>
+	<method id="drawNow" returnType="void" isProperty="false">
+	</method>
+	<method id="UIComponent" isConstructor="true" isProperty="false">
+	</method>
+</class></livePreview>
+</component>
+]]></classProperties>
+               <customIcon>
+                    <CustomIcon rowByteCount="72" colorDepth="32" width="18" height="18" frameRight="360" frameBottom="360" isTransparent="true" href="36trut61ib2.dat"/>
+               </customIcon>
+               <SwcItem name="nid.ui.controls.DatePicker" version="1379246535" isTopLevel="true"/>
+          </DOMCompiledClipItem>
+     </media>
+     <timelines>
+          <DOMTimeline name="Scene 1">
+               <layers>
+                    <DOMLayer name="Layer 2" color="#9933CC" current="true" isSelected="true">
+                         <frames>
+                              <DOMFrame index="0" keyMode="9728">
+                                   <elements>
+                                        <DOMCompiledClipInstance libraryItemName="DatePicker" selected="true" uniqueID="5">
+                                             <dataBindingXML><![CDATA[<component metaDataFetched='true' schemaUrl='' schemaOperation='' sceneRootLabel='Scene 1' oldCopiedComponentPath='5'>
+</component>
+]]></dataBindingXML>
+                                             <parametersAsXML><![CDATA[   <property id="calendarPlacement">
+      <Inspectable name="calendarPlacement" variable="calendarPlacement" category="" verbose="0" defaultValue="right" enumeration="left,right,top,bottom,top-left,top-right,bottom-left,bottom-right,manual" type="List"/>
+   </property>
+   <property id="dateFormat">
+      <Inspectable name="dateFormat" variable="dateFormat" category="" verbose="0" defaultValue="DD/MM/YYYY" enumeration="D/M/YY,M/D/YY,YY/M/D,YY/D/M,DD/MM/YYYY,MM/DD/YYYY,YYYY/MM/DD,YYYY/DD/MM" type="List"/>
+   </property>
+   <property id="enabled">
+      <Inspectable name="enabled" variable="enabled" category="" verbose="1" defaultValue="true" type="Boolean"/>
+   </property>
+   <property id="iconPlacement">
+      <Inspectable name="iconPlacement" variable="iconPlacement" category="" verbose="0" defaultValue="right" enumeration="left,right" type="List"/>
+   </property>
+   <property id="prompt">
+      <Inspectable name="prompt" variable="prompt" category="" verbose="0" defaultValue="Select Date" type="String"/>
+   </property>
+   <property id="visible">
+      <Inspectable name="visible" variable="visible" category="" verbose="1" defaultValue="true" type="Boolean"/>
+   </property>
+]]></parametersAsXML>
+                                        </DOMCompiledClipInstance>
+                                   </elements>
+                              </DOMFrame>
+                         </frames>
+                    </DOMLayer>
+               </layers>
+          </DOMTimeline>
+     </timelines>
+     <swatchLists>
+          <swatchList>
+               <swatches>
+                    <SolidSwatchItem/>
+                    <SolidSwatchItem/>
+                    <SolidSwatchItem/>
+                    <SolidSwatchItem/>
+                    <SolidSwatchItem color="#003300" hue="80" saturation="239" brightness="24"/>
+                    <SolidSwatchItem color="#006600" hue="80" saturation="239" brightness="48"/>
+                    <SolidSwatchItem color="#009900" hue="80" saturation="239" brightness="72"/>
+                    <SolidSwatchItem color="#00CC00" hue="80" saturation="239" brightness="96"/>
+                    <SolidSwatchItem color="#00FF00" hue="80" saturation="239" brightness="120"/>
+                    <SolidSwatchItem color="#330000" saturation="239" brightness="24"/>
+                    <SolidSwatchItem color="#333300" hue="40" saturation="239" brightness="24"/>
+                    <SolidSwatchItem color="#336600" hue="60" saturation="239" brightness="48"/>
+                    <SolidSwatchItem color="#339900" hue="67" saturation="239" brightness="72"/>
+                    <SolidSwatchItem color="#33CC00" hue="70" saturation="239" brightness="96"/>
+                    <SolidSwatchItem color="#33FF00" hue="72" saturation="239" brightness="120"/>
+                    <SolidSwatchItem color="#660000" saturation="239" brightness="48"/>
+                    <SolidSwatchItem color="#663300" hue="20" saturation="239" brightness="48"/>
+                    <SolidSwatchItem color="#666600" hue="40" saturation="239" brightness="48"/>
+                    <SolidSwatchItem color="#669900" hue="53" saturation="239" brightness="72"/>
+                    <SolidSwatchItem color="#66CC00" hue="60" saturation="239" brightness="96"/>
+                    <SolidSwatchItem color="#66FF00" hue="64" saturation="239" brightness="120"/>
+                    <SolidSwatchItem/>
+                    <SolidSwatchItem color="#333333" brightness="48"/>
+                    <SolidSwatchItem/>
+                    <SolidSwatchItem color="#000033" hue="160" saturation="239" brightness="24"/>
+                    <SolidSwatchItem color="#003333" hue="120" saturation="239" brightness="24"/>
+                    <SolidSwatchItem color="#006633" hue="100" saturation="239" brightness="48"/>
+                    <SolidSwatchItem color="#009933" hue="93" saturation="239" brightness="72"/>
+                    <SolidSwatchItem color="#00CC33" hue="90" saturation="239" brightness="96"/>
+                    <SolidSwatchItem color="#00FF33" hue="88" saturation="239" brightness="120"/>
+                    <SolidSwatchItem color="#330033" hue="200" saturation="239" brightness="24"/>
+                    <SolidSwatchItem color="#333333" brightness="48"/>
+                    <SolidSwatchItem color="#336633" hue="80" saturation="80" brightness="72"/>
+                    <SolidSwatchItem color="#339933" hue="80" saturation="120" brightness="96"/>
+                    <SolidSwatchItem color="#33CC33" hue="80" saturation="144" brightness="120"/>
+                    <SolidSwatchItem color="#33FF33" hue="80" saturation="239" brightness="144"/>
+                    <SolidSwatchItem color="#660033" hue="220" saturation="239" brightness="48"/>
+                    <SolidSwatchItem color="#663333" saturation="80" brightness="72"/>
+                    <SolidSwatchItem color="#666633" hue="40" saturation="80" brightness="72"/>
+                    <SolidSwatchItem color="#669933" hue="60" saturation="120" brightness="96"/>
+                    <SolidSwatchItem color="#66CC33" hue="67" saturation="144" brightness="120"/>
+                    <SolidSwatchItem color="#66FF33" hue="70" saturation="239" brightness="144"/>
+                    <SolidSwatchItem/>
+                    <SolidSwatchItem color="#666666" brightness="96"/>
+                    <SolidSwatchItem/>
+                    <SolidSwatchItem color="#000066" hue="160" saturation="239" brightness="48"/>
+                    <SolidSwatchItem color="#003366" hue="140" saturation="239" brightness="48"/>
+                    <SolidSwatchItem color="#006666" hue="120" saturation="239" brightness="48"/>
+                    <SolidSwatchItem color="#009966" hue="107" saturation="239" brightness="72"/>
+                    <SolidSwatchItem color="#00CC66" hue="100" saturation="239" brightness="96"/>
+                    <SolidSwatchItem color="#00FF66" hue="96" saturation="239" brightness="120"/>
+                    <SolidSwatchItem color="#330066" hue="180" saturation="239" brightness="48"/>
+                    <SolidSwatchItem color="#333366" hue="160" saturation="80" brightness="72"/>
+                    <SolidSwatchItem color="#336666" hue="120" saturation="80" brightness="72"/>
+                    <SolidSwatchItem color="#339966" hue="100" saturation="120" brightness="96"/>
+                    <SolidSwatchItem color="#33CC66" hue="93" saturation="144" brightness="120"/>
+                    <SolidSwatchItem color="#33FF66" hue="90" saturation="239" brightness="144"/>
+                    <SolidSwatchItem color="#660066" hue="200" saturation="239" brightness="48"/>
+                    <SolidSwatchItem color="#663366" hue="200" saturation="80" brightness="72"/>
+                    <SolidSwatchItem color="#666666" brightness="96"/>
+                    <SolidSwatchItem color="#669966" hue="80" saturation="48" brightness="120"/>
+                    <SolidSwatchItem color="#66CC66" hue="80" saturation="120" brightness="144"/>
+                    <SolidSwatchItem color="#66FF66" hue="80" saturation="239" brightness="168"/>
+                    <SolidSwatchItem/>
+                    <SolidSwatchItem color="#999999" brightness="144"/>
+                    <SolidSwatchItem/>
+                    <SolidSwatchItem color="#000099" hue="160" saturation="239" brightness="72"/>
+                    <SolidSwatchItem color="#003399" hue="147" saturation="239" brightness="72"/>
+                    <SolidSwatchItem color="#006699" hue="133" saturation="239" brightness="72"/>
+                    <SolidSwatchItem color="#009999" hue="120" saturation="239" brightness="72"/>
+                    <SolidSwatchItem color="#00CC99" hue="110" saturation="239" brightness="96"/>
+                    <SolidSwatchItem color="#00FF99" hue="104" saturation="239" brightness="120"/>
+                    <SolidSwatchItem color="#330099" hue="173" saturation="239" brightness="72"/>
+                    <SolidSwatchItem color="#333399" hue="160" saturation="120" brightness="96"/>
+                    <SolidSwatchItem color="#336699" hue="140" saturation="120" brightness="96"/>
+                    <SolidSwatchItem color="#339999" hue="120" saturation="120" brightness="96"/>
+                    <SolidSwatchItem color="#33CC99" hue="107" saturation="144" brightness="120"/>
+                    <SolidSwatchItem color="#33FF99" hue="100" saturation="239" brightness="144"/>
+                    <SolidSwatchItem color="#660099" hue="187" saturation="239" brightness="72"/>
+                    <SolidSwatchItem color="#663399" hue="180" saturation="120" brightness="96"/>
+                    <SolidSwatchItem color="#666699" hue="160" saturation="48" brightness="120"/>
+                    <SolidSwatchItem color="#669999" hue="120" saturation="48" brightness="120"/>
+                    <SolidSwatchItem color="#66CC99" hue="100" saturation="120" brightness="144"/>
+                    <SolidSwatchItem color="#66FF99" hue="93" saturation="239" brightness="168"/>
+                    <SolidSwatchItem/>
+                    <SolidSwatchItem color="#CCCCCC" brightness="192"/>
+                    <SolidSwatchItem/>
+                    <SolidSwatchItem color="#0000CC" hue="160" saturation="239" brightness="96"/>
+                    <SolidSwatchItem color="#0033CC" hue="150" saturation="239" brightness="96"/>
+                    <SolidSwatchItem color="#0066CC" hue="140" saturation="239" brightness="96"/>
+                    <SolidSwatchItem color="#0099CC" hue="130" saturation="239" brightness="96"/>
+                    <SolidSwatchItem color="#00CCCC" hue="120" saturation="239" brightness="96"/>
+                    <SolidSwatchItem color="#00FFCC" hue="112" saturation="239" brightness="120"/>
+                    <SolidSwatchItem color="#3300CC" hue="170" saturation="239" brightness="96"/>
+                    <SolidSwatchItem color="#3333CC" hue="160" saturation="144" brightness="120"/>
+                    <SolidSwatchItem color="#3366CC" hue="147" saturation="144" brightness="120"/>
+                    <SolidSwatchItem color="#3399CC" hue="133" saturation="144" brightness="120"/>
+                    <SolidSwatchItem color="#33CCCC" hue="120" saturation="144" brightness="120"/>
+                    <SolidSwatchItem color="#33FFCC" hue="110" saturation="239" brightness="144"/>
+                    <SolidSwatchItem color="#6600CC" hue="180" saturation="239" brightness="96"/>
+                    <SolidSwatchItem color="#6633CC" hue="173" saturation="144" brightness="120"/>
+                    <SolidSwatchItem color="#6666CC" hue="160" saturation="120" brightness="144"/>
+                    <SolidSwatchItem color="#6699CC" hue="140" saturation="120" brightness="144"/>
+                    <SolidSwatchItem color="#66CCCC" hue="120" saturation="120" brightness="144"/>
+                    <SolidSwatchItem color="#66FFCC" hue="107" saturation="239" brightness="168"/>
+                    <SolidSwatchItem/>
+                    <SolidSwatchItem color="#FFFFFF" brightness="240"/>
+                    <SolidSwatchItem/>
+                    <SolidSwatchItem color="#0000FF" hue="160" saturation="239" brightness="120"/>
+                    <SolidSwatchItem color="#0033FF" hue="152" saturation="239" brightness="120"/>
+                    <SolidSwatchItem color="#0066FF" hue="144" saturation="239" brightness="120"/>
+                    <SolidSwatchItem color="#0099FF" hue="136" saturation="239" brightness="120"/>
+                    <SolidSwatchItem color="#00CCFF" hue="128" saturation="239" brightness="120"/>
+                    <SolidSwatchItem color="#00FFFF" hue="120" saturation="239" brightness="120"/>
+                    <SolidSwatchItem color="#3300FF" hue="168" saturation="239" brightness="120"/>
+                    <SolidSwatchItem color="#3333FF" hue="160" saturation="239" brightness="144"/>
+                    <SolidSwatchItem color="#3366FF" hue="150" saturation="239" brightness="144"/>
+                    <SolidSwatchItem color="#3399FF" hue="140" saturation="239" brightness="144"/>
+                    <SolidSwatchItem color="#33CCFF" hue="130" saturation="239" brightness="144"/>
+                    <SolidSwatchItem color="#33FFFF" hue="120" saturation="239" brightness="144"/>
+                    <SolidSwatchItem color="#6600FF" hue="176" saturation="239" brightness="120"/>
+                    <SolidSwatchItem color="#6633FF" hue="170" saturation="239" brightness="144"/>
+                    <SolidSwatchItem color="#6666FF" hue="160" saturation="239" brightness="168"/>
+                    <SolidSwatchItem color="#6699FF" hue="147" saturation="239" brightness="168"/>
+                    <SolidSwatchItem color="#66CCFF" hue="133" saturation="239" brightness="168"/>
+                    <SolidSwatchItem color="#66FFFF" hue="120" saturation="239" brightness="168"/>
+                    <SolidSwatchItem/>
+                    <SolidSwatchItem color="#FF0000" saturation="239" brightness="120"/>
+                    <SolidSwatchItem/>
+                    <SolidSwatchItem color="#990000" saturation="239" brightness="72"/>
+                    <SolidSwatchItem color="#993300" hue="13" saturation="239" brightness="72"/>
+                    <SolidSwatchItem color="#996600" hue="27" saturation="239" brightness="72"/>
+                    <SolidSwatchItem color="#999900" hue="40" saturation="239" brightness="72"/>
+                    <SolidSwatchItem color="#99CC00" hue="50" saturation="239" brightness="96"/>
+                    <SolidSwatchItem color="#99FF00" hue="56" saturation="239" brightness="120"/>
+                    <SolidSwatchItem color="#CC0000" saturation="239" brightness="96"/>
+                    <SolidSwatchItem color="#CC3300" hue="10" saturation="239" brightness="96"/>
+                    <SolidSwatchItem color="#CC6600" hue="20" saturation="239" brightness="96"/>
+                    <SolidSwatchItem color="#CC9900" hue="30" saturation="239" brightness="96"/>
+                    <SolidSwatchItem color="#CCCC00" hue="40" saturation="239" brightness="96"/>
+                    <SolidSwatchItem color="#CCFF00" hue="48" saturation="239" brightness="120"/>
+                    <SolidSwatchItem color="#FF0000" saturation="239" brightness="120"/>
+                    <SolidSwatchItem color="#FF3300" hue="8" saturation="239" brightness="120"/>
+                    <SolidSwatchItem color="#FF6600" hue="16" saturation="239" brightness="120"/>
+                    <SolidSwatchItem color="#FF9900" hue="24" saturation="239" brightness="120"/>
+                    <SolidSwatchItem color="#FFCC00" hue="32" saturation="239" brightness="120"/>
+                    <SolidSwatchItem color="#FFFF00" hue="40" saturation="239" brightness="120"/>
+                    <SolidSwatchItem/>
+                    <SolidSwatchItem color="#00FF00" hue="80" saturation="239" brightness="120"/>
+                    <SolidSwatchItem/>
+                    <SolidSwatchItem color="#990033" hue="227" saturation="239" brightness="72"/>
+                    <SolidSwatchItem color="#993333" saturation="120" brightness="96"/>
+                    <SolidSwatchItem color="#996633" hue="20" saturation="120" brightness="96"/>
+                    <SolidSwatchItem color="#999933" hue="40" saturation="120" brightness="96"/>
+                    <SolidSwatchItem color="#99CC33" hue="53" saturation="144" brightness="120"/>
+                    <SolidSwatchItem color="#99FF33" hue="60" saturation="239" brightness="144"/>
+                    <SolidSwatchItem color="#CC0033" hue="230" saturation="239" brightness="96"/>
+                    <SolidSwatchItem color="#CC3333" saturation="144" brightness="120"/>
+                    <SolidSwatchItem color="#CC6633" hue="13" saturation="144" brightness="120"/>
+                    <SolidSwatchItem color="#CC9933" hue="27" saturation="144" brightness="120"/>
+                    <SolidSwatchItem color="#CCCC33" hue="40" saturation="144" brightness="120"/>
+                    <SolidSwatchItem color="#CCFF33" hue="50" saturation="239" brightness="144"/>
+                    <SolidSwatchItem color="#FF0033" hue="232" saturation="239" brightness="120"/>
+                    <SolidSwatchItem color="#FF3333" saturation="239" brightness="144"/>
+                    <SolidSwatchItem color="#FF6633" hue="10" saturation="239" brightness="144"/>
+                    <SolidSwatchItem color="#FF9933" hue="20" saturation="239" brightness="144"/>
+                    <SolidSwatchItem color="#FFCC33" hue="30" saturation="239" brightness="144"/>
+                    <SolidSwatchItem color="#FFFF33" hue="40" saturation="239" brightness="144"/>
+                    <SolidSwatchItem/>
+                    <SolidSwatchItem color="#0000FF" hue="160" saturation="239" brightness="120"/>
+                    <SolidSwatchItem/>
+                    <SolidSwatchItem color="#990066" hue="213" saturation="239" brightness="72"/>
+                    <SolidSwatchItem color="#993366" hue="220" saturation="120" brightness="96"/>
+                    <SolidSwatchItem color="#996666" saturation="48" brightness="120"/>
+                    <SolidSwatchItem color="#999966" hue="40" saturation="48" brightness="120"/>
+                    <SolidSwatchItem color="#99CC66" hue="60" saturation="120" brightness="144"/>
+                    <SolidSwatchItem color="#99FF66" hue="67" saturation="239" brightness="168"/>
+                    <SolidSwatchItem color="#CC0066" hue="220" saturation="239" brightness="96"/>
+                    <SolidSwatchItem color="#CC3366" hue="227" saturation="144" brightness="120"/>
+                    <SolidSwatchItem color="#CC6666" saturation="120" brightness="144"/>
+                    <SolidSwatchItem color="#CC9966" hue="20" saturation="120" brightness="144"/>
+                    <SolidSwatchItem color="#CCCC66" hue="40" saturation="120" brightness="144"/>
+                    <SolidSwatchItem color="#CCFF66" hue="53" saturation="239" brightness="168"/>
+                    <SolidSwatchItem color="#FF0066" hue="224" saturation="239" brightness="120"/>
+                    <SolidSwatchItem color="#FF3366" hue="230" saturation="239" brightness="144"/>
+                    <SolidSwatchItem color="#FF6666" saturation="239" brightness="168"/>
+                    <SolidSwatchItem color="#FF9966" hue="13" saturation="239" brightness="168"/>
+                    <SolidSwatchItem color="#FFCC66" hue="27" saturation="239" brightness="168"/>
+                    <SolidSwatchItem color="#FFFF66" hue="40" saturation="239" brightness="168"/>
+                    <SolidSwatchItem/>
+                    <SolidSwatchItem color="#FFFF00" hue="40" saturation="239" brightness="120"/>
+                    <SolidSwatchItem/>
+                    <SolidSwatchItem color="#990099" hue="200" saturation="239" brightness="72"/>
+                    <SolidSwatchItem color="#993399" hue="200" saturation="120" brightness="96"/>
+                    <SolidSwatchItem color="#996699" hue="200" saturation="48" brightness="120"/>
+                    <SolidSwatchItem color="#999999" brightness="144"/>
+                    <SolidSwatchItem color="#99CC99" hue="80" saturation="80" brightness="168"/>
+                    <SolidSwatchItem color="#99FF99" hue="80" saturation="239" brightness="192"/>
+                    <SolidSwatchItem color="#CC0099" hue="210" saturation="239" brightness="96"/>
+                    <SolidSwatchItem color="#CC3399" hue="213" saturation="144" brightness="120"/>
+                    <SolidSwatchItem color="#CC6699" hue="220" saturation="120" brightness="144"/>
+                    <SolidSwatchItem color="#CC9999" saturation="80" brightness="168"/>
+                    <SolidSwatchItem color="#CCCC99" hue="40" saturation="80" brightness="168"/>
+                    <SolidSwatchItem color="#CCFF99" hue="60" saturation="239" brightness="192"/>
+                    <SolidSwatchItem color="#FF0099" hue="216" saturation="239" brightness="120"/>
+                    <SolidSwatchItem color="#FF3399" hue="220" saturation="239" brightness="144"/>
+                    <SolidSwatchItem color="#FF6699" hue="227" saturation="239" brightness="168"/>
+                    <SolidSwatchItem color="#FF9999" saturation="239" brightness="192"/>
+                    <SolidSwatchItem color="#FFCC99" hue="20" saturation="239" brightness="192"/>
+                    <SolidSwatchItem color="#FFFF99" hue="40" saturation="239" brightness="192"/>
+                    <SolidSwatchItem/>
+                    <SolidSwatchItem color="#00FFFF" hue="120" saturation="239" brightness="120"/>
+                    <SolidSwatchItem/>
+                    <SolidSwatchItem color="#9900CC" hue="190" saturation="239" brightness="96"/>
+                    <SolidSwatchItem color="#9933CC" hue="187" saturation="144" brightness="120"/>
+                    <SolidSwatchItem color="#9966CC" hue="180" saturation="120" brightness="144"/>
+                    <SolidSwatchItem color="#9999CC" hue="160" saturation="80" brightness="168"/>
+                    <SolidSwatchItem color="#99CCCC" hue="120" saturation="80" brightness="168"/>
+                    <SolidSwatchItem color="#99FFCC" hue="100" saturation="239" brightness="192"/>
+                    <SolidSwatchItem color="#CC00CC" hue="200" saturation="239" brightness="96"/>
+                    <SolidSwatchItem color="#CC33CC" hue="200" saturation="144" brightness="120"/>
+                    <SolidSwatchItem color="#CC66CC" hue="200" saturation="120" brightness="144"/>
+                    <SolidSwatchItem color="#CC99CC" hue="200" saturation="80" brightness="168"/>
+                    <SolidSwatchItem color="#CCCCCC" brightness="192"/>
+                    <SolidSwatchItem color="#CCFFCC" hue="80" saturation="239" brightness="216"/>
+                    <SolidSwatchItem color="#FF00CC" hue="208" saturation="239" brightness="120"/>
+                    <SolidSwatchItem color="#FF33CC" hue="210" saturation="239" brightness="144"/>
+                    <SolidSwatchItem color="#FF66CC" hue="213" saturation="239" brightness="168"/>
+                    <SolidSwatchItem color="#FF99CC" hue="220" saturation="239" brightness="192"/>
+                    <SolidSwatchItem color="#FFCCCC" saturation="239" brightness="216"/>
+                    <SolidSwatchItem color="#FFFFCC" hue="40" saturation="239" brightness="216"/>
+                    <SolidSwatchItem/>
+                    <SolidSwatchItem color="#FF00FF" hue="200" saturation="239" brightness="120"/>
+                    <SolidSwatchItem/>
+                    <SolidSwatchItem color="#9900FF" hue="184" saturation="239" brightness="120"/>
+                    <SolidSwatchItem color="#9933FF" hue="180" saturation="239" brightness="144"/>
+                    <SolidSwatchItem color="#9966FF" hue="173" saturation="239" brightness="168"/>
+                    <SolidSwatchItem color="#9999FF" hue="160" saturation="239" brightness="192"/>
+                    <SolidSwatchItem color="#99CCFF" hue="140" saturation="239" brightness="192"/>
+                    <SolidSwatchItem color="#99FFFF" hue="120" saturation="239" brightness="192"/>
+                    <SolidSwatchItem color="#CC00FF" hue="192" saturation="239" brightness="120"/>
+                    <SolidSwatchItem color="#CC33FF" hue="190" saturation="239" brightness="144"/>
+                    <SolidSwatchItem color="#CC66FF" hue="187" saturation="239" brightness="168"/>
+                    <SolidSwatchItem color="#CC99FF" hue="180" saturation="239" brightness="192"/>
+                    <SolidSwatchItem color="#CCCCFF" hue="160" saturation="239" brightness="216"/>
+                    <SolidSwatchItem color="#CCFFFF" hue="120" saturation="239" brightness="216"/>
+                    <SolidSwatchItem color="#FF00FF" hue="200" saturation="239" brightness="120"/>
+                    <SolidSwatchItem color="#FF33FF" hue="200" saturation="239" brightness="144"/>
+                    <SolidSwatchItem color="#FF66FF" hue="200" saturation="239" brightness="168"/>
+                    <SolidSwatchItem color="#FF99FF" hue="200" saturation="239" brightness="192"/>
+                    <SolidSwatchItem color="#FFCCFF" hue="200" saturation="239" brightness="216"/>
+                    <SolidSwatchItem color="#FFFFFF" brightness="240"/>
+               </swatches>
+          </swatchList>
+     </swatchLists>
+     <extendedSwatchLists>
+          <swatchList>
+               <swatches>
+                    <LinearGradientSwatchItem>
+                         <GradientEntry color="#FFFFFF" ratio="0"/>
+                         <GradientEntry ratio="1"/>
+                    </LinearGradientSwatchItem>
+                    <RadialGradientSwatchItem>
+                         <GradientEntry color="#FFFFFF" ratio="0"/>
+                         <GradientEntry ratio="1"/>
+                    </RadialGradientSwatchItem>
+                    <RadialGradientSwatchItem>
+                         <GradientEntry color="#FF0000" ratio="0"/>
+                         <GradientEntry ratio="1"/>
+                    </RadialGradientSwatchItem>
+                    <RadialGradientSwatchItem>
+                         <GradientEntry color="#00FF00" ratio="0"/>
+                         <GradientEntry ratio="1"/>
+                    </RadialGradientSwatchItem>
+                    <RadialGradientSwatchItem>
+                         <GradientEntry color="#0000FF" ratio="0"/>
+                         <GradientEntry ratio="1"/>
+                    </RadialGradientSwatchItem>
+                    <LinearGradientSwatchItem>
+                         <GradientEntry color="#0066FD" ratio="0"/>
+                         <GradientEntry color="#FFFFFF" ratio="0.376470588235294"/>
+                         <GradientEntry color="#FFFFFF" ratio="0.47843137254902"/>
+                         <GradientEntry color="#996600" ratio="0.501960784313725"/>
+                         <GradientEntry color="#FFCC00" ratio="0.666666666666667"/>
+                         <GradientEntry color="#FFFFFF" ratio="1"/>
+                    </LinearGradientSwatchItem>
+                    <LinearGradientSwatchItem>
+                         <GradientEntry color="#FF0000" ratio="0"/>
+                         <GradientEntry color="#FFFF00" ratio="0.164705882352941"/>
+                         <GradientEntry color="#00FF00" ratio="0.364705882352941"/>
+                         <GradientEntry color="#00FFFF" ratio="0.498039215686275"/>
+                         <GradientEntry color="#0000FF" ratio="0.666666666666667"/>
+                         <GradientEntry color="#FF00FF" ratio="0.831372549019608"/>
+                         <GradientEntry color="#FF0000" ratio="1"/>
+                    </LinearGradientSwatchItem>
+               </swatches>
+          </swatchList>
+     </extendedSwatchLists>
+     <PrinterSettings/>
+     <publishHistory>
+          <PublishItem publishSize="33803" publishTime="1299228325"/>
+          <PublishItem publishSize="33705" publishTime="1298437515"/>
+          <PublishItem publishSize="33730" publishTime="1298437372"/>
+          <PublishItem publishSize="33268" publishTime="1297924215"/>
+          <PublishItem publishSize="33290" publishTime="1297923826"/>
+          <PublishItem publishSize="33262" publishTime="1297922696"/>
+          <PublishItem publishSize="33295" publishTime="1297922564"/>
+          <PublishItem publishSize="33295" publishTime="1297922403"/>
+     </publishHistory>
+     <swcCache>
+          <Swc hashKey="EqoIhHy1CZqPdU9lphmjB." href="3a7adt61mo.swc">
+               <classDefinitions>
+                    <ClassDefinition value="mx.core.IFlexAsset"/>
+                    <ClassDefinition value="caurina.transitions.Tweener"/>
+                    <ClassDefinition value="caurina.transitions.TweenListObj"/>
+                    <ClassDefinition value="mx.core.IRepeaterClient"/>
+                    <ClassDefinition value="fl.controls.LabelButton"/>
+                    <ClassDefinition value="nid.ui.controls.DatePicker"/>
+                    <ClassDefinition value="mx.core.FlexBitmap"/>
+                    <ClassDefinition value="fl.controls.Button"/>
+                    <ClassDefinition value="nid.events.CalendarEvent"/>
+                    <ClassDefinition value="mx.utils.NameUtil"/>
+                    <ClassDefinition value="fl.events.ComponentEvent"/>
+                    <ClassDefinition value="nid.ui.controls.datePicker.DateField"/>
+                    <ClassDefinition value="nid.ui.controls.datePicker.UIProperties"/>
+                    <ClassDefinition value="caurina.transitions.AuxFunctions"/>
+                    <ClassDefinition value="caurina.transitions.SpecialProperty"/>
+                    <ClassDefinition value="mx.core.IAssetLayoutFeatures"/>
+                    <ClassDefinition value="caurina.transitions.SpecialPropertyModifier"/>
+                    <ClassDefinition value="fl.controls.BaseButton"/>
+                    <ClassDefinition value="fl.core.UIComponent"/>
+                    <ClassDefinition value="BitmapFont"/>
+                    <ClassDefinition value="fl.livepreview.LivePreviewParent"/>
+                    <ClassDefinition value="fl.managers.IFocusManagerComponent"/>
+                    <ClassDefinition value="fl.managers.IFocusManagerGroup"/>
+                    <ClassDefinition value="mx.core.IFlexDisplayObject"/>
+                    <ClassDefinition value="fl.managers.FocusManager"/>
+                    <ClassDefinition value="fl.managers.IFocusManager"/>
+                    <ClassDefinition value="caurina.transitions.SpecialPropertySplitter"/>
+                    <ClassDefinition value="fl.core.InvalidationType"/>
+                    <ClassDefinition value="nid.ui.controls.datePicker.CalendarSkin"/>
+                    <ClassDefinition value="caurina.transitions.Equations"/>
+                    <ClassDefinition value="mx.core.BitmapAsset"/>
+                    <ClassDefinition value="fl.controls.ButtonLabelPlacement"/>
+                    <ClassDefinition value="nid.ui.controls.datePicker.UIProperties_default_icon"/>
+                    <ClassDefinition value="nid.ui.controls.datePicker.iconSprite"/>
+                    <ClassDefinition value="fl.managers.StyleManager"/>
+                    <ClassDefinition value="mx.core.ILayoutDirectionElement"/>
+                    <ClassDefinition value="caurina.transitions.PropertyInfoObj"/>
+                    <ClassDefinition value="mx.core.IFlexAsset"/>
+                    <ClassDefinition value="mx.core.ILayoutDirectionElement"/>
+                    <ClassDefinition value="mx.core.IAssetLayoutFeatures"/>
+                    <ClassDefinition value="fl.managers.IFocusManager"/>
+                    <ClassDefinition value="fl.managers.IFocusManagerComponent"/>
+                    <ClassDefinition value="fl.core.InvalidationType"/>
+                    <ClassDefinition value="mx.utils.NameUtil"/>
+                    <ClassDefinition value="fl.managers.StyleManager"/>
+                    <ClassDefinition value="caurina.transitions.Tweener"/>
+                    <ClassDefinition value="caurina.transitions.TweenListObj"/>
+                    <ClassDefinition value="caurina.transitions.SpecialPropertySplitter"/>
+                    <ClassDefinition value="caurina.transitions.SpecialPropertyModifier"/>
+                    <ClassDefinition value="caurina.transitions.SpecialProperty"/>
+                    <ClassDefinition value="fl.managers.IFocusManagerGroup"/>
+                    <ClassDefinition value="mx.core.IRepeaterClient"/>
+                    <ClassDefinition value="caurina.transitions.Equations"/>
+                    <ClassDefinition value="caurina.transitions.PropertyInfoObj"/>
+                    <ClassDefinition value="caurina.transitions.AuxFunctions"/>
+                    <ClassDefinition value="fl.controls.ButtonLabelPlacement"/>
+                    <ClassDefinition value="mx.core.IFlexDisplayObject"/>
+                    <ClassDefinition value="nid.events.CalendarEvent"/>
+                    <ClassDefinition value="fl.events.ComponentEvent"/>
+                    <ClassDefinition value="fl.managers.FocusManager"/>
+                    <ClassDefinition value="mx.core.FlexBitmap"/>
+                    <ClassDefinition value="mx.core.BitmapAsset"/>
+                    <ClassDefinition value="fl.core.UIComponent"/>
+                    <ClassDefinition value="nid.ui.controls.datePicker.DateField"/>
+                    <ClassDefinition value="nid.ui.controls.datePicker.iconSprite"/>
+                    <ClassDefinition value="nid.ui.controls.datePicker.UIProperties_default_icon"/>
+                    <ClassDefinition value="fl.livepreview.LivePreviewParent"/>
+                    <ClassDefinition value="BitmapFont"/>
+                    <ClassDefinition value="nid.ui.controls.datePicker.UIProperties"/>
+                    <ClassDefinition value="fl.controls.BaseButton"/>
+                    <ClassDefinition value="nid.ui.controls.datePicker.CalendarSkin"/>
+                    <ClassDefinition value="fl.controls.LabelButton"/>
+                    <ClassDefinition value="nid.ui.controls.DatePicker"/>
+                    <ClassDefinition value="fl.controls.Button"/>
+               </classDefinitions>
+          </Swc>
+     </swcCache>
+</DOMDocument>

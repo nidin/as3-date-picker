@@ -95,6 +95,9 @@
 		private function init(e:Event):void 
 		{
 			this.removeEventListener(Event.ADDED_TO_STAGE, init);
+			if (_selectedDate == null) {
+				_selectedDate = new Date();
+			}
 			addContextMenuItems();
 			construct();
 			update(null);

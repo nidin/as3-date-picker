@@ -1,0 +1,18 @@
+<DOMComponentItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="DatePicker" itemID="4d5b77f9-000001f5" linkageExportForAS="true" linkageClassName="nid.ui.controls.DatePicker" lastModified="1393778368" isSpriteSubclass="true" tooltip="Date Picker" customIconID="0" descriptionType="text" livePreviewScmHRef="3e6f6v1qls.swf" livePreviewScmSourceFilename="D:\Git-Repo\as3-date-picker\bin\live_preview.swf" persistLivePreview11="true" livePreview11ScmHRef="3e6f6v1qls4.swf" livePreview11ScmSourceFilename="C:\Users\nidin\AppData\Local\Adobe\Flash CS6\en_US\Configuration\TMP3byv9t61oy..swf" symbolDescription="AS3 date picker 4.8&#xD;&#xA;developed by Nidin Vinayakan&#xD;&#xA;nidinthb@gmail.com | &#xD;&#xA;www.infogroupindia.com" editFrameIndex="1" requiredMinimumPlayerVersion="0" requiredMinimumASVersion="0" parametersAreLocked="true">
+  <timeline>
+    <DOMTimeline name="DatePicker">
+      <layers>
+        <DOMLayer name="Layer 1" color="#4FFF4F" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" keyMode="9728">
+              <elements/>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+  <customIcon>
+    <CustomIcon rowByteCount="72" colorDepth="32" width="18" height="18" frameRight="360" frameBottom="360" isTransparent="true" href="3946wv1qf8.dat"/>
+  </customIcon>
+</DOMComponentItem>

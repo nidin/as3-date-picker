@@ -57,6 +57,7 @@ package
 			//datePicker.calendarPlacement = "manual";
 			//datePicker.calendarPoint = new Point(-100, -100);
 			datePicker.alwaysShowCalendar = false;
+			
 			holder.addChild(datePicker);
 			
 			datePicker.tabChildren = false;
