@@ -1,0 +1,1 @@
+%FLEX_HOME%\bin\compc +flexlib="%FLEX_HOME%\frameworks" -output=bin/AS3-DatePicker-v4.9.0.swc -load-config="obj/AS3-DatePicker-v4.flex.compc.xml" -external-library-path="%FLEX_HOME%/frameworks/libs/player/16.0/playerglobal.swc","%FLEX_HOME%/frameworks/libs/textLayout.swc","%FLEX_HOME%/frameworks/libs/framework.swc"

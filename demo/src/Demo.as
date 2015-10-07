@@ -33,6 +33,8 @@ package
 			addChild(holder);
 			
 			datePicker = new DatePicker();
+			datePicker.dateField.width = 100;
+			datePicker.dateField.height = 19;
 			datePicker.calendarWidth = 280;
 			datePicker.calendarHeight = 300;
 			datePicker.icon = new icon_img();
