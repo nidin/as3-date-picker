@@ -38,6 +38,9 @@ package
 			addChild(holder);
 			
 			datePicker = new DatePicker();
+			datePicker.dateField.width = 100;
+			datePicker.dateField.height = 19;
+			
 			//datePicker.calendarWidth = 300;
 			//datePicker.calendarHeight = 300;
 			//datePicker.icon = new icon_img();
@@ -49,7 +52,7 @@ package
 			//datePicker.embedFonts = true;
 			datePicker.bitmapFonts = true;
 			//datePicker.fontSize(20, 20, 20);
-			datePicker.selectedDate = new Date(2013,2,3,12,2,2,2);
+			//datePicker.selectedDate = new Date(2013,2,3,12,2,2,2);
 			datePicker.addEventListener(CalendarEvent.CHANGE, getdate);
 			datePicker.x = 25;
 			datePicker.y = 25;

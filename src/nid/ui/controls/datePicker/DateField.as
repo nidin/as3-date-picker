@@ -34,6 +34,19 @@
 		private var fieldWidth:int = 69;
 		private var fieldHeight:int = 19;
 		
+		override public function get width():Number { return super.width; }
+		override public function set width(value:Number):void {
+			fieldWidth = value;
+			drawField();
+		}
+		
+		override public function get height():Number { return fieldHeight as Number; }
+		override public function set height(value:Number):void {
+			fieldHeight = value; 
+			drawField();
+		}
+		
+		
 		public function appendText(value:String):void { return t.appendText(value); }
 		
 		public function get textField():TextField{ return t;}
@@ -83,6 +96,7 @@
 			this.scale9Grid = grid;
 		}
 		protected function drawField():void {
+			this.graphics.clear();
 			this.graphics.beginFill(_fieldColor);
 			this.graphics.drawRect(0, 0, fieldWidth,fieldHeight);
 			this.graphics.endFill();
