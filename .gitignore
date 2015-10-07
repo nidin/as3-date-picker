@@ -2,7 +2,6 @@
 ## Flash Develop
 #################
 
-/obj
 /demo/demo.zip
 /demo/obj
 /asi
@@ -106,8 +105,6 @@ DocProject/Help/html
 publish
 
 # Others
-[Bb]in
-[Oo]bj
 sql
 TestResults
 *.Cache
